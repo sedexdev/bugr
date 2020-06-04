@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueGroup component Renders correctly 1`] = `
+<section
+  className="issue-group-container"
+>
+  <div
+    className="issue-group-title-container"
+  >
+    <h1
+      className="issue-group-title"
+    />
+    <i
+      className="add-group fas fa-plus-circle"
+    />
+  </div>
+  <div
+    className="issue-box"
+  />
+</section>
+`;

@@ -1,0 +1,28 @@
+.issue-group-container {
+    margin: 0 0 0 300px;
+}
+
+.issue-group-title-container {
+    display: flex;
+    align-items: center;
+    padding: 60px 0 10px 0;
+    margin: 0 0 0 5% !important;
+}
+
+.issue-group-title {
+    font-family: 'Indie Flower', cursive;  
+    margin: 0; 
+}
+
+.add-group {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.issue-box {
+    width: 90%;
+    border-radius: 10px;
+    border: 3px dashed greenyellow;
+    padding: 20px;
+    margin: auto;
+}

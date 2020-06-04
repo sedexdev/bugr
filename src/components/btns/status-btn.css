@@ -1,0 +1,11 @@
+.issue-state-btn {
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #fff;
+    width: 120px;
+    height: 40px;
+    border-radius: 40px;
+    outline: none;
+    cursor: pointer;
+}

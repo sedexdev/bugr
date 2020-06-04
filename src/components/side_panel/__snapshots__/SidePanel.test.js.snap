@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SidePanel component renders correctly 1`] = `
+<aside
+  className="side-panel-container"
+>
+  <h1>
+    Side Panel
+  </h1>
+</aside>
+`;

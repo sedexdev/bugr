@@ -1,0 +1,47 @@
+.issue-container {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.issue-description-container {
+    display: flex;
+    width: 60%;
+}
+
+.issue-description,
+.completion-date {
+    width: 95%;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #222;
+    outline: none;
+}
+
+.issue-menu {
+    margin-left: 20px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.issue-state-btn-container {
+    display: flex;
+    width: 20%;
+    margin-left: 15px;
+}
+
+
+#priority {
+    background-color: green; 
+}
+
+#stage {
+    background-color: orangered; 
+    margin-left: 15px;
+}
+
+.date-container {
+    display: flex;
+    margin-left: 25px;
+}

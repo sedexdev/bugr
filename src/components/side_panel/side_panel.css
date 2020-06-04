@@ -1,0 +1,9 @@
+.side-panel-container {
+    position: fixed;
+    top: 30px;
+    width: 300px;
+    height: 100vh;
+    background-color: darkslategrey;
+    border-right: 1px solid #222;
+    opacity: 0.9;
+}

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Issue component Renders correctly 1`] = `
+<div
+  className="issue-container"
+>
+  <div
+    className="issue-description-container"
+  >
+    <div
+      className="issue-description"
+    />
+    <i
+      className="issue-menu fas fa-ellipsis-v"
+    />
+  </div>
+  <div
+    className="issue-state-btn-container"
+  >
+    <button
+      className="issue-state-btn"
+      id="priority"
+      type="button"
+    />
+    <button
+      className="issue-state-btn"
+      id="stage"
+      type="button"
+    />
+  </div>
+  <div
+    className="date-container"
+  >
+    <div
+      className="completion-date"
+    />
+    <i
+      className="issue-menu fas fa-ellipsis-v"
+    />
+  </div>
+</div>
+`;
