@@ -16,7 +16,9 @@
 .delete-project-msg {
     color: #222;
     text-align: justify;
+    line-height: 30px;
     padding-left: 5px;
+    margin: 0;
 }
 
 .delete-project-btn-container {
