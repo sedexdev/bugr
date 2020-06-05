@@ -7,3 +7,58 @@
     border-right: 1px solid #222;
     opacity: 0.9;
 }
+
+.side-panel-heading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #fff;
+}
+
+.panel-heading {
+    color: #fff;
+}
+
+.add-project {
+    color: #fff;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.add-project:hover {
+    transform: scale(1.1);
+}
+
+.project-list-container {
+    margin-top: 30px;
+}
+
+.project-link {
+    position: relative;
+    display: flex;
+}
+
+.project-link a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.8rem;
+    margin: 10px 0 10px 30px;
+    cursor: pointer;
+}
+
+.project-link a:hover  {
+    color: #222;
+}
+
+.delete-project {
+    color: #fff;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.delete-project:hover {
+    transform: scale(1.1);
+}

@@ -1,12 +1,17 @@
-.issue-group-container {
-    margin: 0 0 0 300px;
-}
-
 .issue-group-title-container {
     display: flex;
     align-items: center;
-    padding: 60px 0 10px 0;
+    padding: 20px 0 10px 0;
     margin: 0 0 0 5% !important;
+}
+
+.delete-group {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.delete-group:hover {
+    transform: scale(1.1);
 }
 
 .issue-group-title {
@@ -14,9 +19,21 @@
     margin: 0; 
 }
 
+.group-options-container {
+    visibility: hidden;
+}
+
+.issue-group-title-container:hover .group-options-container {
+    visibility: visible;
+}
+
 .add-group {
     margin-left: 10px;
     cursor: pointer;
+}
+
+.add-group:hover {
+    transform: scale(1.1);
 }
 
 .issue-box {

@@ -1,1 +1,16 @@
-.main-application-container {}
+.main-application-container {
+    margin-left: 300px;
+}
+
+.main-project-title {
+    font-family: 'Indie Flower', cursive;
+    color: #111;
+    text-align: center;
+    margin: 0 !important;
+    padding-top: 60px;
+}
+
+
+
+
+  
