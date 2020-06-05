@@ -35,6 +35,7 @@ export const IssueGroup = ({ title, issues }) => {
                         return (
                             <Issue
                                 key={issue.id}
+                                id={issue.id}
                                 description={issue.description}
                                 completion={issue.finish_by}
                                 priority={issue.priority}
