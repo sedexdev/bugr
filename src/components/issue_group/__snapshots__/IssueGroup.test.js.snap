@@ -15,6 +15,7 @@ exports[`IssueGroup component Renders correctly 1`] = `
     >
       <i
         className="add-group fas fa-plus-circle"
+        onClick={[Function]}
         title="Add"
       />
       <i
