@@ -5,6 +5,8 @@ import { mount } from "enzyme";
 
 import IssueGroup from "./IssueGroup";
 import Issue from "../issue/Issue";
+import Delete from "../delete/Delete";
+import Add from "../add/Add";
 
 const issueGroups = require("../../test_project_data/project_a.json");
 
@@ -45,6 +47,24 @@ describe("IssueGroup component", () => {
                 <IssueGroup issues={issueGroups["groups"][0].issues} />
             );
             expect(wrapper.find(Issue).length).toEqual(2);
+        });
+    });
+
+    describe("renders after click", () => {
+        it("should render the Delete component when the delete group button is clicked", () => {
+            const wrapper = mount(<IssueGroup />);
+            wrapper
+                .find({ className: "delete-group fas fa-times-circle" })
+                .simulate("click");
+            expect(wrapper.find(Delete).length).toEqual(1);
+        });
+
+        it("should render the Add component when the add group button is clicked", () => {
+            const wrapper = mount(<IssueGroup />);
+            wrapper
+                .find({ className: "add-group fas fa-plus-circle" })
+                .simulate("click");
+            expect(wrapper.find(Add).length).toEqual(1);
         });
     });
 });
