@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Issue from "../issue/Issue";
 import DeletePopUp from "../delete/Delete";
+import AddPopUp from "../add/Add";
 
 import PropTypes from "prop-types";
 
@@ -9,18 +10,41 @@ import "./issue_group.css";
 
 export const IssueGroup = ({ title, issues }) => {
     const [showDeleteGroup, setDeleteGroup] = useState(false);
+    const [showAddGroup, setAddGroup] = useState(false);
+    const [groupName, setGroupName] = useState(false);
+
+    const onChange = (e) => {
+        setGroupName(e.target.value);
+    };
 
     return (
         <section className='issue-group-container'>
             <div className='issue-group-title-container'>
                 <h2 className='issue-group-title'>{title}</h2>
                 <div className='group-options-container'>
-                    <i className='add-group fas fa-plus-circle' title='Add'></i>
+                    <i
+                        className='add-group fas fa-plus-circle'
+                        title='Add'
+                        onClick={() => {
+                            setAddGroup(true);
+                            setDeleteGroup(false);
+                        }}></i>
                     <i
                         className='delete-group fas fa-times-circle'
                         title='Delete group'
-                        onClick={() => setDeleteGroup(true)}></i>
+                        onClick={() => {
+                            setDeleteGroup(true);
+                            setAddGroup(false);
+                        }}></i>
                 </div>
+                {showAddGroup && (
+                    <AddPopUp
+                        extraClasses='group-add-position'
+                        placeholder='Group name...'
+                        onChange={onChange}
+                        revealFunc={setAddGroup}
+                    />
+                )}
                 {showDeleteGroup && (
                     <DeletePopUp
                         title={title}
