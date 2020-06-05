@@ -11,15 +11,17 @@ export const Issue = ({ description, completion, priority, stage }) => {
         <div className='issue-container'>
             <div className='issue-description-container'>
                 <div className='issue-description'>{description}</div>
-                <i className='issue-menu fas fa-ellipsis-v'></i>
+                <i className='issue-menu fas fa-ellipsis-v' title='Options'></i>
             </div>
             <div className='issue-state-btn-container'>
-                <StatusBtn id='priority' value={priority} />
                 <StatusBtn id='stage' value={stage} />
+                <StatusBtn id='priority' value={priority} />
             </div>
             <div className='date-container'>
                 <div className='completion-date'>{completion}</div>
-                <i className='issue-menu fas fa-ellipsis-v'></i>
+                <i
+                    className='issue-menu fas fa-ellipsis-v'
+                    title='Date options'></i>
             </div>
         </div>
     );
