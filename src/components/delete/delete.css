@@ -1,0 +1,48 @@
+.delete-project-container {
+    position: absolute;
+    left: 150px;
+    top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    border: 1px solid #222;
+    background-color: #fff;
+    height: 30px;
+    width: fit-content;
+    padding: 0 5px;
+}
+
+.delete-project-msg {
+    color: #222;
+    text-align: justify;
+    padding-left: 5px;
+}
+
+.delete-project-btn-container {
+    display: flex;
+    margin-left: 2px;
+}
+
+.delete-project-btn {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    padding: 4px 3px 0 3px;
+    cursor: pointer;
+}
+
+.do-delete {
+    color: yellowgreen;
+}
+
+.do-not-delete {
+    color: red;
+}
+
+.group-delete-position {
+    position: relative;
+    left: 10px;
+    top: 0;
+}
