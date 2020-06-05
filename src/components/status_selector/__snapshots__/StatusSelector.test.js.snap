@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusOption component Renders correctly 1`] = `
+<div
+  className="status-option"
+>
+  <div
+    className="undefined status-color"
+  >
+    <p
+      className="status-title"
+    />
+  </div>
+</div>
+`;
+
+exports[`StatusSelector component Renders correctly 1`] = `
+<div
+  className="status-selector-container"
+>
+  <i
+    className="remove-selector fas fa-times-circle"
+    onClick={[Function]}
+  />
+  <div
+    className="status-option"
+  >
+    <div
+      className="Stuck status-color"
+    >
+      <p
+        className="status-title"
+      >
+        Stuck
+      </p>
+    </div>
+  </div>
+  <div
+    className="status-option"
+  >
+    <div
+      className="Complete status-color"
+    >
+      <p
+        className="status-title"
+      >
+        Complete
+      </p>
+    </div>
+  </div>
+  <div
+    className="status-option"
+  >
+    <div
+      className="Progressing status-color"
+    >
+      <p
+        className="status-title"
+      >
+        Progressing
+      </p>
+    </div>
+  </div>
+  <div
+    className="status-option"
+  >
+    <div
+      className="Todo status-color"
+    >
+      <p
+        className="status-title"
+      >
+        Todo
+      </p>
+    </div>
+  </div>
+</div>
+`;

@@ -4,6 +4,7 @@ exports[`StatusBtn component Renders correctly 1`] = `
 <button
   className="issue-state-btn Testing"
   id="test"
+  onClick={[Function]}
   type="button"
 >
   Testing

@@ -20,12 +20,14 @@ exports[`Issue component Renders correctly 1`] = `
   >
     <button
       className="issue-state-btn undefined"
-      id="stage"
+      id="stage-undefined"
+      onClick={[Function]}
       type="button"
     />
     <button
       className="issue-state-btn undefined"
-      id="priority"
+      id="priority-undefined"
+      onClick={[Function]}
       type="button"
     />
   </div>
