@@ -1,0 +1,40 @@
+.add-object-container {
+    position: absolute;
+    left: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #222;
+    border-radius: 50px;
+    padding: 4px;
+}
+
+.object-title-input {
+    background: none;
+    border: none;
+    outline: none;
+    margin-top: 5px;
+    padding: 0 0 5px 10px;
+}
+
+.object-title-input::placeholder {
+    font-size: 0.8rem;
+}
+
+.add-project-btn {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.create-object {
+    color: yellowgreen;
+    font-size: 1.2rem;
+}
+
+.do-not-create-object {
+    color: red;
+    font-size: 1.2rem;
+}
