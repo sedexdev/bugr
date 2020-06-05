@@ -4,9 +4,13 @@ import PropTypes from "prop-types";
 
 import "./add.css";
 
-const Add = ({ id, placeholder, onChange, revealFunc }) => {
+const Add = ({ id, extraClasses, placeholder, onChange, revealFunc }) => {
+    const addClasses = extraClasses
+        ? `add-object-container ${extraClasses}`
+        : "add-object-container";
+
     return (
-        <div className='add-object-container'>
+        <div className={addClasses}>
             <input
                 className='object-title-input'
                 id={id}
@@ -33,6 +37,7 @@ const Add = ({ id, placeholder, onChange, revealFunc }) => {
 
 Add.propTypes = {
     id: PropTypes.string,
+    extraClasses: PropTypes.string,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     revealFunc: PropTypes.func,
