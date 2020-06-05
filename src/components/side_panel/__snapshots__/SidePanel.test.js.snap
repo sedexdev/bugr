@@ -14,6 +14,7 @@ exports[`SidePanel component renders correctly 1`] = `
     </h1>
     <i
       className="add-project fas fa-plus-circle"
+      onClick={[Function]}
       title="New project"
     />
   </div>

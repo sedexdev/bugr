@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add component Renders correctly 1`] = `
+<div
+  className="add-object-container"
+>
+  <input
+    className="object-title-input"
+    name="project-text"
+    onChange={[Function]}
+    type="text"
+  />
+  <button
+    className="create-object-btn"
+  >
+    <i
+      className="create-object fas fa-check-circle"
+    />
+  </button>
+  <button
+    className="close-object-creation-btn"
+  >
+    <i
+      className="do-not-create-object fas fa-times-circle"
+      onClick={[Function]}
+    />
+  </button>
+</div>
+`;
