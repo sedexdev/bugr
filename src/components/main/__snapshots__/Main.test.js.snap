@@ -3,5 +3,12 @@
 exports[`Main component Renders correctly 1`] = `
 <main
   className="main-application-container"
-/>
+>
+  <h1
+    className="main-project-title"
+  >
+    Project A
+  </h1>
+  0
+</main>
 `;

@@ -12,19 +12,20 @@ exports[`Issue component Renders correctly 1`] = `
     />
     <i
       className="issue-menu fas fa-ellipsis-v"
+      title="Options"
     />
   </div>
   <div
     className="issue-state-btn-container"
   >
     <button
-      className="issue-state-btn"
-      id="priority"
+      className="issue-state-btn undefined"
+      id="stage"
       type="button"
     />
     <button
-      className="issue-state-btn"
-      id="stage"
+      className="issue-state-btn undefined"
+      id="priority"
       type="button"
     />
   </div>
@@ -36,6 +37,7 @@ exports[`Issue component Renders correctly 1`] = `
     />
     <i
       className="issue-menu fas fa-ellipsis-v"
+      title="Date options"
     />
   </div>
 </div>

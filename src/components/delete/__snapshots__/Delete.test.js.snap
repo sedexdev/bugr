@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SidePanel component renders correctly 1`] = `
+<div
+  className="delete-project-container"
+>
+  <p
+    className="delete-project-msg"
+  >
+    Delete 
+    ?
+  </p>
+  <div
+    className="delete-project-btn-container"
+  >
+    <button
+      className="delete-project-btn"
+    >
+      <i
+        className="do-delete fas fa-check-circle"
+      />
+    </button>
+    <button
+      className="delete-project-btn"
+    >
+      <i
+        className="do-not-delete fas fa-times-circle"
+        onClick={[Function]}
+      />
+    </button>
+  </div>
+</div>
+`;

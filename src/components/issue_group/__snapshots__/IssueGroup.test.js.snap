@@ -7,12 +7,22 @@ exports[`IssueGroup component Renders correctly 1`] = `
   <div
     className="issue-group-title-container"
   >
-    <h1
+    <h2
       className="issue-group-title"
     />
-    <i
-      className="add-group fas fa-plus-circle"
-    />
+    <div
+      className="group-options-container"
+    >
+      <i
+        className="add-group fas fa-plus-circle"
+        title="Add"
+      />
+      <i
+        className="delete-group fas fa-times-circle"
+        onClick={[Function]}
+        title="Delete group"
+      />
+    </div>
   </div>
   <div
     className="issue-box"
