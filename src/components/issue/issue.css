@@ -30,12 +30,9 @@
 }
 
 .issue-state-btn-container {
+    position: relative;
     display: flex;
     width: 20%;
-    margin-left: 15px;
-}
-
-#priority {
     margin-left: 15px;
 }
 
