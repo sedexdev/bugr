@@ -30,16 +30,20 @@
 
 .Low {
     background-color: chartreuse;
+    margin-left: 15px;
 }
 
 .Medium {
     background-color: darkorange;
+    margin-left: 15px;
 }
 
 .High {
     background-color: red;
+    margin-left: 15px;
 }
 
 .Urgent {
     background-color: #000;
+    margin-left: 15px;
 }
