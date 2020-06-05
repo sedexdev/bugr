@@ -9,3 +9,37 @@
     outline: none;
     cursor: pointer;
 }
+
+/* Colours */
+
+.Todo {
+    background-color: yellowgreen;
+}
+
+.Progressing {
+    background-color: teal;
+}
+
+.Complete {
+    background-color: green;
+}
+
+.Stuck {
+    background-color: red;
+}
+
+.Low {
+    background-color: chartreuse;
+}
+
+.Medium {
+    background-color: darkorange;
+}
+
+.High {
+    background-color: red;
+}
+
+.Urgent {
+    background-color: #000;
+}
