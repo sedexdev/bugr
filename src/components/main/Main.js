@@ -10,12 +10,13 @@ const Main = () => {
     const [issueGroups, setIssueGroups] = useState([]);
 
     useEffect(() => {
-        setIssueGroups(projectIssues["Project A"]);
+        setIssueGroups(projectIssues["groups"]);
     }, []);
 
     return (
         <main className='main-application-container'>
-            {issueGroups &&
+            <h1 className='main-project-title'>{projectIssues.title}</h1>
+            {issueGroups.length &&
                 issueGroups.map((issueGroup) => {
                     return (
                         <IssueGroup
