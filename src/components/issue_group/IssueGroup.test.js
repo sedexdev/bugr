@@ -25,24 +25,24 @@ describe("IssueGroup component", () => {
             const wrapper = mount(<IssueGroup />);
             expect(wrapper.find("section").length).toEqual(1);
         });
-        it("should render a h1 element", () => {
+        it("should render a h2 element", () => {
             const wrapper = mount(<IssueGroup />);
-            expect(wrapper.find("h1").length).toEqual(1);
+            expect(wrapper.find("h2").length).toEqual(1);
         });
 
-        it("should render an i element", () => {
+        it("should render 2 i elements", () => {
             const wrapper = mount(<IssueGroup />);
-            expect(wrapper.find("i").length).toEqual(1);
+            expect(wrapper.find("i").length).toEqual(2);
         });
 
-        it("should render 2 div elements", () => {
+        it("should render 3 div elements", () => {
             const wrapper = mount(<IssueGroup />);
-            expect(wrapper.find("div").length).toEqual(2);
+            expect(wrapper.find("div").length).toEqual(3);
         });
 
         it("should render 2 Issue components", () => {
             const wrapper = mount(
-                <IssueGroup issues={issueGroups["Project A"][0].issues} />
+                <IssueGroup issues={issueGroups["groups"][0].issues} />
             );
             expect(wrapper.find(Issue).length).toEqual(2);
         });
