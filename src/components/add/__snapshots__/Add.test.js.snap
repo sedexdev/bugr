@@ -7,18 +7,21 @@ exports[`Add component Renders correctly 1`] = `
   <input
     className="object-title-input"
     name="project-text"
+    onBlur={[Function]}
     onChange={[Function]}
+    onFocus={[Function]}
     type="text"
   />
   <button
-    className="create-object-btn"
+    className="add-project-btn"
   >
     <i
       className="create-object fas fa-check-circle"
+      title="Create project"
     />
   </button>
   <button
-    className="close-object-creation-btn"
+    className="add-project-btn"
   >
     <i
       className="do-not-create-object fas fa-times-circle"
