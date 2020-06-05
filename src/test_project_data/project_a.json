@@ -1,5 +1,6 @@
 {
-    "Project A": [
+    "title": "Project A",
+    "groups": [
         {
             "title": "Frontend",
             "id": "923hi23b82yg3fu2h3f823yg8y23g989829uh3",
@@ -11,8 +12,8 @@
                     "created_at": "04/06/2020:10.01.76",
                     "finish_by": "10/06/2020",
                     "description": "Frontend issue",
-                    "priority": "low",
-                    "stage": "In progress"
+                    "priority": "Low",
+                    "stage": "Progressing"
                 },
                 {
                     "title": "Issue 2",
@@ -20,8 +21,8 @@
                     "created_at": "05/06/2020:10.01.76",
                     "finish_by": "20/06/2020",
                     "description": "Frontend issue 2",
-                    "priority": "high",
-                    "stage": "Planning"
+                    "priority": "High",
+                    "stage": "Todo"
                 }
             ]
         },
@@ -36,8 +37,8 @@
                     "created_at": "04/06/2020:10.01.76",
                     "finish_by": "10/06/2020",
                     "description": "Backend issue",
-                    "priority": "medium",
-                    "stage": "In progress"
+                    "priority": "Medium",
+                    "stage": "Complete"
                 },
                 {
                     "title": "Issue 2",
@@ -45,8 +46,8 @@
                     "created_at": "05/06/2020:10.01.76",
                     "finish_by": "20/06/2020",
                     "description": "Backend issue 2",
-                    "priority": "urgent",
-                    "stage": "in progress"
+                    "priority": "Urgent",
+                    "stage": "Stuck"
                 }
             ]
         }
