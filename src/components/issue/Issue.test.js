@@ -5,6 +5,7 @@ import { mount } from "enzyme";
 
 import Issue from "./Issue";
 import StatusBtn from "../btns/StatusBtn";
+import StatusSelector from "../status_selector/StatusSelector";
 
 describe("Issue component", () => {
     test("Renders without crashing", () => {
@@ -32,6 +33,20 @@ describe("Issue component", () => {
         it("should render 2 StatusBtn components", () => {
             const wrapper = mount(<Issue />);
             expect(wrapper.find(StatusBtn).length).toEqual(2);
+        });
+    });
+
+    describe("renders after click", () => {
+        it("should render the stage selector when a stage btn is clicked", () => {
+            const wrapper = mount(<Issue />);
+            wrapper.find(StatusBtn).at(0).simulate("click");
+            expect(wrapper.find(StatusSelector).length).toEqual(1);
+        });
+
+        it("should render the priority selector when a priority btn is clicked", () => {
+            const wrapper = mount(<Issue />);
+            wrapper.find(StatusBtn).at(1).simulate("click");
+            expect(wrapper.find(StatusSelector).length).toEqual(1);
         });
     });
 });
