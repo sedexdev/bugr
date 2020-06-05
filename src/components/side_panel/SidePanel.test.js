@@ -6,6 +6,7 @@ import { mount } from "enzyme";
 
 import SidePanel from "./SidePanel";
 import Delete from "../delete/Delete";
+import Add from "../add/Add";
 
 describe("SidePanel component", () => {
     test("Renders without crashing", () => {
@@ -54,6 +55,15 @@ describe("SidePanel component", () => {
                 .at(0)
                 .simulate("click");
             expect(wrapper.find(Delete).length).toEqual(1);
+        });
+
+        it("should render the Add component when add project button clicked", () => {
+            const wrapper = mount(<SidePanel />);
+            wrapper
+                .find({ className: "add-project fas fa-plus-circle" })
+                .at(0)
+                .simulate("click");
+            expect(wrapper.find(Add).length).toEqual(1);
         });
     });
 });
