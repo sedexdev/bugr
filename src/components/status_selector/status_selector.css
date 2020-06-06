@@ -8,6 +8,20 @@
     z-index: 3;
 }
 
+.selector-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.selector-header-container p {
+    display: block;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+
 .status-option {
     width: 120px;
     cursor: pointer;
@@ -34,6 +48,5 @@
 
 .remove-selector {
     color: red;
-    margin-left: 85%;
     cursor: pointer;
 }
