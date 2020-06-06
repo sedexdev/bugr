@@ -18,10 +18,17 @@ exports[`StatusSelector component Renders correctly 1`] = `
 <div
   className="status-selector-container"
 >
-  <i
-    className="remove-selector fas fa-times-circle"
-    onClick={[Function]}
-  />
+  <div
+    className="selector-header-container"
+  >
+    <p>
+      Stage
+    </p>
+    <i
+      className="remove-selector fas fa-times-circle"
+      onClick={[Function]}
+    />
+  </div>
   <div
     className="status-option"
   >
