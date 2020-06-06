@@ -29,6 +29,11 @@
     transform: scale(1.2);
 }
 
+.issue-options-temp-container,
+.date-options-temp-container {
+    position: relative;
+}
+
 .issue-state-btn-container {
     position: relative;
     display: flex;
@@ -40,3 +45,47 @@
     display: flex;
     margin-left: 25px;
 }
+
+.issue-options-container,
+.date-options-container {
+    position: absolute;
+    top: 10px;
+    left: -105px;
+    background-color: #fff;
+    border: 1px solid #222;
+    border-radius: 10px;
+    margin: 0;
+    padding: 5px 10px 10px 10px;
+    z-index: 2;
+}
+
+.date-options-container {
+    left: -80px;
+}
+
+.issue-options-list,
+.date-options-list {
+    margin: 0;
+    padding: 0;
+}
+
+.issue-option-list-element,
+.date-option-list-element {
+    list-style: none;
+    cursor: pointer;
+}
+
+.issue-option-list-element:hover,
+.date-option-list-element:hover {
+    color: blue;
+}
+
+.remove-menu-options {
+    color: red;
+    margin-left: 80%;
+    cursor: pointer;
+}
+
+.date-options-container .remove-menu-options {
+    margin-left: 75%;
+} 

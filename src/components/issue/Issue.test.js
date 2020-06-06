@@ -20,9 +20,9 @@ describe("Issue component", () => {
     });
 
     describe("Issue HTML elements", () => {
-        it("should render 6 div elements", () => {
+        it("should render 8 div elements", () => {
             const wrapper = mount(<Issue />);
-            expect(wrapper.find("div").length).toEqual(6);
+            expect(wrapper.find("div").length).toEqual(8);
         });
 
         it("should render 2 i elements", () => {
@@ -47,6 +47,28 @@ describe("Issue component", () => {
             const wrapper = mount(<Issue />);
             wrapper.find(StatusBtn).at(1).simulate("click");
             expect(wrapper.find(StatusSelector).length).toEqual(1);
+        });
+
+        it("should render the issue options list when a issue options btn is clicked", () => {
+            const wrapper = mount(<Issue />);
+            wrapper
+                .find({ className: "issue-menu fas fa-ellipsis-v" })
+                .at(0)
+                .simulate("click");
+            expect(
+                wrapper.find({ className: "issue-options-container" }).length
+            ).toEqual(1);
+        });
+
+        it("should render the date options list when a date options btn is clicked", () => {
+            const wrapper = mount(<Issue />);
+            wrapper
+                .find({ className: "issue-menu fas fa-ellipsis-v" })
+                .at(1)
+                .simulate("click");
+            expect(
+                wrapper.find({ className: "date-options-container" }).length
+            ).toEqual(1);
         });
     });
 });
