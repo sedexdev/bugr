@@ -12,7 +12,11 @@ exports[`Issue component Renders correctly 1`] = `
     />
     <i
       className="issue-menu fas fa-ellipsis-v"
+      onClick={[Function]}
       title="Options"
+    />
+    <div
+      className="issue-options-temp-container"
     />
   </div>
   <div
@@ -39,7 +43,11 @@ exports[`Issue component Renders correctly 1`] = `
     />
     <i
       className="issue-menu fas fa-ellipsis-v"
+      onClick={[Function]}
       title="Date options"
+    />
+    <div
+      className="date-options-temp-container"
     />
   </div>
 </div>
