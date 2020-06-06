@@ -24,6 +24,11 @@ describe("StatusSelector component", () => {
             expect(wrapper.find("i").length).toEqual(1);
         });
 
+        it("should render 10 div elements", () => {
+            const wrapper = mount(<StatusSelector />);
+            expect(wrapper.find("div").length).toEqual(10);
+        });
+
         it("should render 4 StatusOption components", () => {
             const wrapper = mount(<StatusSelector />);
             expect(wrapper.find(StatusOption).length).toEqual(4);
