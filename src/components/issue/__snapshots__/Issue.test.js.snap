@@ -52,3 +52,26 @@ exports[`Issue component Renders correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`IssueOptions component Renders correctly 1`] = `
+<div>
+  <i
+    className="remove-menu-options fas fa-times-circle"
+    onClick={[Function]}
+  />
+  <ul
+    className="issue-options-list"
+  >
+    <li
+      className="issue-option-list-element"
+    >
+      Test1
+    </li>
+    <li
+      className="issue-option-list-element"
+    >
+      Test2
+    </li>
+  </ul>
+</div>
+`;
