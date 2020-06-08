@@ -19,7 +19,7 @@ export const Delete = ({ title, extraClasses, revealFunc }) => {
                 <button className='delete-project-btn'>
                     <i
                         className='do-not-delete fas fa-times-circle'
-                        onClick={() => revealFunc(false)}></i>
+                        onClick={() => revealFunc("")}></i>
                 </button>
             </div>
         </div>

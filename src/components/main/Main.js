@@ -8,13 +8,13 @@ const projectIssues = require("../../test_project_data/project_a.json");
 
 const Main = () => {
     const [issueGroups, setIssueGroups] = useState([]);
-    const [showDeleteGroup, setDeleteGroup] = useState(false);
-    const [showAddGroup, setAddGroup] = useState(false);
-    const [groupName, setGroupName] = useState(false);
-    const [showPriorities, setPriorities] = useState(false);
-    const [showStages, setStages] = useState(false);
-    const [showIssueOptions, setIssueOptions] = useState(false);
-    const [showDateOptions, setDateOptions] = useState(false);
+    const [deleteGroupId, setDeleteGroupId] = useState("");
+    const [addGroupId, setAddGroupId] = useState("");
+    const [groupName, setGroupName] = useState("");
+    const [prioritiesId, setPrioritiesId] = useState("");
+    const [stagesId, setStagesId] = useState("");
+    const [issueOptionsId, setIssueOptionsId] = useState("");
+    const [dateOptionsId, setDateOptionsId] = useState("");
 
     useEffect(() => {
         setIssueGroups(projectIssues["groups"]);
@@ -32,21 +32,22 @@ const Main = () => {
                     return (
                         <IssueGroup
                             key={issueGroup.id}
+                            issueGroupId={issueGroup.id}
+                            setAddGroupId={setAddGroupId}
+                            currentAddGroupId={addGroupId}
+                            setDeleteGroupId={setDeleteGroupId}
+                            currentDeleteGroupId={deleteGroupId}
                             onChange={onChangeGroupName}
                             title={issueGroup.title}
                             issues={issueGroup.issues}
-                            showDeleteGroup={showDeleteGroup}
-                            setDeleteGroup={setDeleteGroup}
-                            showAddGroup={showAddGroup}
-                            setAddGroup={setAddGroup}
-                            showPriorities={showPriorities}
-                            setPriorities={setPriorities}
-                            showStages={showStages}
-                            setStages={setStages}
-                            showIssueOptions={showIssueOptions}
-                            setIssueOptions={setIssueOptions}
-                            showDateOptions={showDateOptions}
-                            setDateOptions={setDateOptions}
+                            prioritiesId={prioritiesId}
+                            setPrioritiesId={setPrioritiesId}
+                            stagesId={stagesId}
+                            setStagesId={setStagesId}
+                            issueOptionsId={issueOptionsId}
+                            setIssueOptionsId={setIssueOptionsId}
+                            dateOptionsId={dateOptionsId}
+                            setDateOptionsId={setDateOptionsId}
                         />
                     );
                 })}

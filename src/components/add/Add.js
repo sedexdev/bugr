@@ -29,7 +29,7 @@ const Add = ({ id, extraClasses, placeholder, onChange, revealFunc }) => {
             <button className='add-project-btn'>
                 <i
                     className='do-not-create-object fas fa-times-circle'
-                    onClick={() => revealFunc(false)}></i>
+                    onClick={() => revealFunc("")}></i>
             </button>
         </div>
     );

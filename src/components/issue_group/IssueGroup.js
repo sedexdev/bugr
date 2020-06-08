@@ -9,21 +9,22 @@ import PropTypes from "prop-types";
 import "./issue_group.css";
 
 export const IssueGroup = ({
+    issueGroupId,
+    setAddGroupId,
+    currentAddGroupId,
+    setDeleteGroupId,
+    currentDeleteGroupId,
     onChange,
     title,
     issues,
-    showDeleteGroup,
-    setDeleteGroup,
-    showAddGroup,
-    setAddGroup,
-    showPriorities,
-    setPriorities,
-    showStages,
-    setStages,
-    showIssueOptions,
-    setIssueOptions,
-    showDateOptions,
-    setDateOptions,
+    prioritiesId,
+    setPrioritiesId,
+    stagesId,
+    setStagesId,
+    issueOptionsId,
+    setIssueOptionsId,
+    dateOptionsId,
+    setDateOptionsId,
 }) => {
     return (
         <section className='issue-group-container'>
@@ -32,32 +33,33 @@ export const IssueGroup = ({
                 <div className='group-options-container'>
                     <i
                         className='add-group fas fa-plus-circle'
+                        id={issueGroupId}
                         title='Add'
                         onClick={() => {
-                            setAddGroup(true);
-                            setDeleteGroup(false);
+                            setAddGroupId(issueGroupId);
+                            setDeleteGroupId("");
                         }}></i>
                     <i
                         className='delete-group fas fa-times-circle'
                         title='Delete group'
                         onClick={() => {
-                            setDeleteGroup(true);
-                            setAddGroup(false);
+                            setDeleteGroupId(issueGroupId);
+                            setAddGroupId("");
                         }}></i>
                 </div>
-                {showAddGroup && (
+                {currentAddGroupId === issueGroupId && (
                     <AddPopUp
                         extraClasses='group-add-position'
                         placeholder='Group name...'
                         onChange={onChange}
-                        revealFunc={setAddGroup}
+                        revealFunc={setAddGroupId}
                     />
                 )}
-                {showDeleteGroup && (
+                {currentDeleteGroupId === issueGroupId && (
                     <DeletePopUp
                         title={title}
                         extraClasses='group-delete-position'
-                        revealFunc={setDeleteGroup}
+                        revealFunc={setDeleteGroupId}
                     />
                 )}
             </div>
@@ -67,19 +69,19 @@ export const IssueGroup = ({
                         return (
                             <Issue
                                 key={issue.id}
-                                id={issue.id}
+                                issueId={issue.id}
                                 description={issue.description}
                                 completion={issue.finish_by}
                                 priority={issue.priority}
                                 stage={issue.stage}
-                                showPriorities={showPriorities}
-                                setPriorities={setPriorities}
-                                showStages={showStages}
-                                setStages={setStages}
-                                showIssueOptions={showIssueOptions}
-                                setIssueOptions={setIssueOptions}
-                                showDateOptions={showDateOptions}
-                                setDateOptions={setDateOptions}
+                                prioritiesId={prioritiesId}
+                                setPrioritiesId={setPrioritiesId}
+                                stagesId={stagesId}
+                                setStagesId={setStagesId}
+                                issueOptionsId={issueOptionsId}
+                                setIssueOptionsId={setIssueOptionsId}
+                                dateOptionsId={dateOptionsId}
+                                setDateOptionsId={setDateOptionsId}
                             />
                         );
                     })}
@@ -89,22 +91,23 @@ export const IssueGroup = ({
 };
 
 IssueGroup.propTypes = {
+    issueGroupId: PropTypes.string,
+    setAddGroupId: PropTypes.func,
+    currentAddGroupId: PropTypes.string,
+    setDeleteGroupId: PropTypes.func,
+    currentDeleteGroupId: PropTypes.string,
     onChange: PropTypes.func,
     title: PropTypes.string,
     issues: PropTypes.array,
-    showDeleteGroup: PropTypes.bool,
-    setDeleteGroup: PropTypes.func,
-    showAddGroup: PropTypes.bool,
-    setAddGroup: PropTypes.func,
     groupName: PropTypes.string,
-    showPriorities: PropTypes.bool,
-    setPriorities: PropTypes.func,
-    showStages: PropTypes.bool,
-    setStages: PropTypes.func,
-    showIssueOptions: PropTypes.bool,
-    setIssueOptions: PropTypes.func,
-    showDateOptions: PropTypes.bool,
-    setDateOptions: PropTypes.func,
+    prioritiesId: PropTypes.string,
+    setPrioritiesId: PropTypes.func,
+    stagesId: PropTypes.string,
+    setStagesId: PropTypes.func,
+    issueOptionsId: PropTypes.string,
+    setIssueOptionsId: PropTypes.func,
+    dateOptionsId: PropTypes.string,
+    setDateOptionsId: PropTypes.func,
 };
 
 export default IssueGroup;

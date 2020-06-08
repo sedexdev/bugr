@@ -6,7 +6,7 @@ export const IssueOptions = ({ containerName, displayOptions, options }) => {
         <div className={containerName}>
             <i
                 className='remove-menu-options fas fa-times-circle'
-                onClick={() => displayOptions(false)}></i>
+                onClick={() => displayOptions("")}></i>
             <ul className='issue-options-list'>
                 {options.map((option) => {
                     return (

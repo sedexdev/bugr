@@ -9,22 +9,22 @@ import PropTypes from "prop-types";
 import "./issue.css";
 
 export const Issue = ({
-    id,
+    issueId,
     description,
     completion,
     priority,
     stage,
-    showPriorities,
-    setPriorities,
-    showStages,
-    setStages,
-    showIssueOptions,
-    setIssueOptions,
-    showDateOptions,
-    setDateOptions,
+    prioritiesId,
+    setPrioritiesId,
+    stagesId,
+    setStagesId,
+    issueOptionsId,
+    setIssueOptionsId,
+    dateOptionsId,
+    setDateOptionsId,
 }) => {
-    const stageId = `stage-${id}`;
-    const priorityId = `priority-${id}`;
+    const stageId = `stage-${issueId}`;
+    const priorityId = `priority-${issueId}`;
 
     return (
         <div className='issue-container'>
@@ -33,38 +33,41 @@ export const Issue = ({
                 <i
                     className='issue-menu fas fa-ellipsis-v'
                     title='Options'
-                    onClick={() => setIssueOptions(true)}></i>
+                    onClick={() => setIssueOptionsId(issueId)}></i>
                 <div className='issue-options-temp-container'>
-                    {showIssueOptions && (
+                    {issueOptionsId === issueId && (
                         <IssueOptions
                             containerName='issue-options-container'
-                            displayOptions={setIssueOptions}
+                            displayOptions={setIssueOptionsId}
                             options={["New Issue", "Edit", "Delete", "Notes"]}
                         />
                     )}
                 </div>
             </div>
             <div className='issue-state-btn-container'>
-                {showStages && (
-                    <StatusSelector status='stage' onClick={setStages} />
+                {stagesId === issueId && (
+                    <StatusSelector status='stage' onClick={setStagesId} />
                 )}
                 <StatusBtn
                     id={stageId}
                     value={stage}
                     onClick={() => {
-                        setStages(true);
-                        setPriorities(false);
+                        setStagesId(issueId);
+                        setPrioritiesId("");
                     }}
                 />
-                {showPriorities && (
-                    <StatusSelector status='priority' onClick={setPriorities} />
+                {prioritiesId === issueId && (
+                    <StatusSelector
+                        status='priority'
+                        onClick={setPrioritiesId}
+                    />
                 )}
                 <StatusBtn
                     id={priorityId}
                     value={priority}
                     onClick={() => {
-                        setPriorities(true);
-                        setStages(false);
+                        setPrioritiesId(issueId);
+                        setStagesId("");
                     }}
                 />
             </div>
@@ -73,12 +76,12 @@ export const Issue = ({
                 <i
                     className='issue-menu fas fa-ellipsis-v'
                     title='Date options'
-                    onClick={() => setDateOptions(true)}></i>
+                    onClick={() => setDateOptionsId(issueId)}></i>
                 <div className='date-options-temp-container'>
-                    {showDateOptions && (
+                    {dateOptionsId === issueId && (
                         <IssueOptions
                             containerName='date-options-container'
-                            displayOptions={setDateOptions}
+                            displayOptions={setDateOptionsId}
                             options={["Edit", "Delete"]}
                         />
                     )}
@@ -94,14 +97,14 @@ Issue.propTypes = {
     completion: PropTypes.string,
     priority: PropTypes.string,
     stage: PropTypes.string,
-    showPriorities: PropTypes.bool,
-    setPriorities: PropTypes.func,
-    showStages: PropTypes.bool,
-    setStages: PropTypes.func,
-    showIssueOptions: PropTypes.bool,
-    setIssueOptions: PropTypes.func,
-    showDateOptions: PropTypes.bool,
-    setDateOptions: PropTypes.func,
+    prioritiesId: PropTypes.string,
+    setPrioritiesId: PropTypes.func,
+    stagesId: PropTypes.string,
+    setStagesId: PropTypes.func,
+    issueOptionsId: PropTypes.string,
+    setIssueOptionsId: PropTypes.func,
+    dateOptionsId: PropTypes.string,
+    setDateOptionsId: PropTypes.func,
 };
 
 export default Issue;

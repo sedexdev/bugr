@@ -13,7 +13,7 @@ export const StatusSelector = ({ status, onClick }) => {
                 <p>Priority</p>
                 <i
                     className='remove-selector fas fa-times-circle'
-                    onClick={() => onClick(false)}></i>
+                    onClick={() => onClick("")}></i>
             </div>
             <StatusOption value='Urgent' />
             <StatusOption value='High' />
@@ -26,7 +26,7 @@ export const StatusSelector = ({ status, onClick }) => {
                 <p>Stage</p>
                 <i
                     className='remove-selector fas fa-times-circle'
-                    onClick={() => onClick(false)}></i>
+                    onClick={() => onClick("")}></i>
             </div>
             <StatusOption value='Stuck' />
             <StatusOption value='Complete' />
