@@ -17,17 +17,184 @@ exports[`Issue component Renders correctly 1`] = `
     />
     <div
       className="issue-options-temp-container"
-    />
+    >
+      <div
+        className="issue-options-container"
+      >
+        <i
+          className="remove-menu-options fas fa-times-circle"
+          onClick={[Function]}
+        />
+        <ul
+          className="issue-options-list"
+        >
+          <li
+            className="issue-option-list-element"
+          >
+            New Issue
+          </li>
+          <li
+            className="issue-option-list-element"
+          >
+            Edit
+          </li>
+          <li
+            className="issue-option-list-element"
+          >
+            Delete
+          </li>
+          <li
+            className="issue-option-list-element"
+          >
+            Notes
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div
     className="issue-state-btn-container"
   >
+    <div
+      className="status-selector-container"
+    >
+      <div
+        className="selector-header-container"
+      >
+        <p>
+          Stage
+        </p>
+        <i
+          className="remove-selector fas fa-times-circle"
+          onClick={[Function]}
+        />
+      </div>
+      <div
+        className="status-option"
+      >
+        <div
+          className="Stuck status-color"
+        >
+          <p
+            className="status-title"
+          >
+            Stuck
+          </p>
+        </div>
+      </div>
+      <div
+        className="status-option"
+      >
+        <div
+          className="Complete status-color"
+        >
+          <p
+            className="status-title"
+          >
+            Complete
+          </p>
+        </div>
+      </div>
+      <div
+        className="status-option"
+      >
+        <div
+          className="Progressing status-color"
+        >
+          <p
+            className="status-title"
+          >
+            Progressing
+          </p>
+        </div>
+      </div>
+      <div
+        className="status-option"
+      >
+        <div
+          className="Todo status-color"
+        >
+          <p
+            className="status-title"
+          >
+            Todo
+          </p>
+        </div>
+      </div>
+    </div>
     <button
       className="issue-state-btn undefined"
       id="stage-undefined"
       onClick={[Function]}
       type="button"
     />
+    <div
+      className="status-selector-container"
+    >
+      <div
+        className="selector-header-container"
+      >
+        <p>
+          Priority
+        </p>
+        <i
+          className="remove-selector fas fa-times-circle"
+          onClick={[Function]}
+        />
+      </div>
+      <div
+        className="status-option"
+      >
+        <div
+          className="Urgent status-color"
+        >
+          <p
+            className="status-title"
+          >
+            Urgent
+          </p>
+        </div>
+      </div>
+      <div
+        className="status-option"
+      >
+        <div
+          className="High status-color"
+        >
+          <p
+            className="status-title"
+          >
+            High
+          </p>
+        </div>
+      </div>
+      <div
+        className="status-option"
+      >
+        <div
+          className="Medium status-color"
+        >
+          <p
+            className="status-title"
+          >
+            Medium
+          </p>
+        </div>
+      </div>
+      <div
+        className="status-option"
+      >
+        <div
+          className="Low status-color"
+        >
+          <p
+            className="status-title"
+          >
+            Low
+          </p>
+        </div>
+      </div>
+    </div>
     <button
       className="issue-state-btn undefined"
       id="priority-undefined"
@@ -48,7 +215,30 @@ exports[`Issue component Renders correctly 1`] = `
     />
     <div
       className="date-options-temp-container"
-    />
+    >
+      <div
+        className="date-options-container"
+      >
+        <i
+          className="remove-menu-options fas fa-times-circle"
+          onClick={[Function]}
+        />
+        <ul
+          className="issue-options-list"
+        >
+          <li
+            className="issue-option-list-element"
+          >
+            Edit
+          </li>
+          <li
+            className="issue-option-list-element"
+          >
+            Delete
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 `;

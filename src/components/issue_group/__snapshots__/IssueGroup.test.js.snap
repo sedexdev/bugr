@@ -24,6 +24,64 @@ exports[`IssueGroup component Renders correctly 1`] = `
         title="Delete group"
       />
     </div>
+    <div
+      className="add-object-container group-add-position"
+    >
+      <input
+        className="object-title-input"
+        name="project-text"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="Group name..."
+        type="text"
+      />
+      <button
+        className="add-project-btn"
+      >
+        <i
+          className="create-object fas fa-check-circle"
+          title="Create project"
+        />
+      </button>
+      <button
+        className="add-project-btn"
+      >
+        <i
+          className="do-not-create-object fas fa-times-circle"
+          onClick={[Function]}
+        />
+      </button>
+    </div>
+    <div
+      className="delete-project-container group-delete-position"
+    >
+      <p
+        className="delete-project-msg"
+      >
+        Delete 
+        ?
+      </p>
+      <div
+        className="delete-project-btn-container"
+      >
+        <button
+          className="delete-project-btn"
+        >
+          <i
+            className="do-delete fas fa-check-circle"
+          />
+        </button>
+        <button
+          className="delete-project-btn"
+        >
+          <i
+            className="do-not-delete fas fa-times-circle"
+            onClick={[Function]}
+          />
+        </button>
+      </div>
+    </div>
   </div>
   <div
     className="issue-box"
