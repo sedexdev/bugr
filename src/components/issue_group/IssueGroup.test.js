@@ -32,14 +32,14 @@ describe("IssueGroup component", () => {
             expect(wrapper.find("h2").length).toEqual(1);
         });
 
-        it("should render 2 i elements", () => {
+        it("should render 6 i elements", () => {
             const wrapper = mount(<IssueGroup />);
-            expect(wrapper.find("i").length).toEqual(2);
+            expect(wrapper.find("i").length).toEqual(6);
         });
 
-        it("should render 3 div elements", () => {
+        it("should render 6 div elements", () => {
             const wrapper = mount(<IssueGroup />);
-            expect(wrapper.find("div").length).toEqual(3);
+            expect(wrapper.find("div").length).toEqual(6);
         });
 
         it("should render 2 Issue components", () => {
@@ -51,8 +51,15 @@ describe("IssueGroup component", () => {
     });
 
     describe("renders after click", () => {
+        let props;
+        beforeEach(() => {
+            props = {
+                setAddGroupId: jest.fn(),
+                setDeleteGroupId: jest.fn(),
+            };
+        });
         it("should render the Delete component when the delete group button is clicked", () => {
-            const wrapper = mount(<IssueGroup />);
+            const wrapper = mount(<IssueGroup {...props} />);
             wrapper
                 .find({ className: "delete-group fas fa-times-circle" })
                 .simulate("click");
@@ -60,7 +67,7 @@ describe("IssueGroup component", () => {
         });
 
         it("should render the Add component when the add group button is clicked", () => {
-            const wrapper = mount(<IssueGroup />);
+            const wrapper = mount(<IssueGroup {...props} />);
             wrapper
                 .find({ className: "add-group fas fa-plus-circle" })
                 .simulate("click");

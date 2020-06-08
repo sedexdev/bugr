@@ -21,14 +21,14 @@ describe("Issue component", () => {
     });
 
     describe("Issue HTML elements", () => {
-        it("should render 8 div elements", () => {
+        it("should render 30 div elements", () => {
             const wrapper = mount(<Issue />);
-            expect(wrapper.find("div").length).toEqual(8);
+            expect(wrapper.find("div").length).toEqual(30);
         });
 
-        it("should render 2 i elements", () => {
+        it("should render 6 i elements", () => {
             const wrapper = mount(<Issue />);
-            expect(wrapper.find("i").length).toEqual(2);
+            expect(wrapper.find("i").length).toEqual(6);
         });
 
         it("should render 2 StatusBtn components", () => {
@@ -38,34 +38,44 @@ describe("Issue component", () => {
     });
 
     describe("renders after click", () => {
+        let props;
+        beforeEach(() => {
+            props = {
+                setStagesId: jest.fn(),
+                setPrioritiesId: jest.fn(),
+                setIssueOptionsId: jest.fn(),
+                setDateOptionsId: jest.fn(),
+            };
+        });
+
         it("should render the stage selector when a stage btn is clicked", () => {
-            const wrapper = mount(<Issue />);
+            const wrapper = mount(<Issue {...props} />);
             wrapper.find(StatusBtn).at(0).simulate("click");
-            expect(wrapper.find(StatusSelector).length).toEqual(1);
+            expect(wrapper.find(StatusSelector).length).toEqual(2);
         });
 
         it("should render the priority selector when a priority btn is clicked", () => {
-            const wrapper = mount(<Issue />);
+            const wrapper = mount(<Issue {...props} />);
             wrapper.find(StatusBtn).at(1).simulate("click");
-            expect(wrapper.find(StatusSelector).length).toEqual(1);
+            expect(wrapper.find(StatusSelector).length).toEqual(2);
         });
 
         it("should render the issue options list when a issue options btn is clicked", () => {
-            const wrapper = mount(<Issue />);
+            const wrapper = mount(<Issue {...props} />);
             wrapper
                 .find({ className: "issue-menu fas fa-ellipsis-v" })
                 .at(0)
                 .simulate("click");
-            expect(wrapper.find(IssueOptions).length).toEqual(1);
+            expect(wrapper.find(IssueOptions).length).toEqual(2);
         });
 
         it("should render the date options list when a date options btn is clicked", () => {
-            const wrapper = mount(<Issue />);
+            const wrapper = mount(<Issue {...props} />);
             wrapper
                 .find({ className: "issue-menu fas fa-ellipsis-v" })
                 .at(1)
                 .simulate("click");
-            expect(wrapper.find(IssueOptions).length).toEqual(1);
+            expect(wrapper.find(IssueOptions).length).toEqual(2);
         });
     });
 });
