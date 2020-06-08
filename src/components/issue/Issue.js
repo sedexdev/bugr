@@ -8,12 +8,21 @@ import PropTypes from "prop-types";
 
 import "./issue.css";
 
-export const Issue = ({ id, description, completion, priority, stage }) => {
-    const [showPriorities, setPriorities] = useState(false);
-    const [showStages, setStages] = useState(false);
-    const [showIssueOptions, setIssueOptions] = useState(false);
-    const [showDateOptions, setDateOptions] = useState(false);
-
+export const Issue = ({
+    id,
+    description,
+    completion,
+    priority,
+    stage,
+    showPriorities,
+    setPriorities,
+    showStages,
+    setStages,
+    showIssueOptions,
+    setIssueOptions,
+    showDateOptions,
+    setDateOptions,
+}) => {
     const stageId = `stage-${id}`;
     const priorityId = `priority-${id}`;
 
@@ -85,6 +94,14 @@ Issue.propTypes = {
     completion: PropTypes.string,
     priority: PropTypes.string,
     stage: PropTypes.string,
+    showPriorities: PropTypes.bool,
+    setPriorities: PropTypes.func,
+    showStages: PropTypes.bool,
+    setStages: PropTypes.func,
+    showIssueOptions: PropTypes.bool,
+    setIssueOptions: PropTypes.func,
+    showDateOptions: PropTypes.bool,
+    setDateOptions: PropTypes.func,
 };
 
 export default Issue;

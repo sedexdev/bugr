@@ -8,15 +8,23 @@ import PropTypes from "prop-types";
 
 import "./issue_group.css";
 
-export const IssueGroup = ({ title, issues }) => {
-    const [showDeleteGroup, setDeleteGroup] = useState(false);
-    const [showAddGroup, setAddGroup] = useState(false);
-    const [groupName, setGroupName] = useState(false);
-
-    const onChange = (e) => {
-        setGroupName(e.target.value);
-    };
-
+export const IssueGroup = ({
+    onChange,
+    title,
+    issues,
+    showDeleteGroup,
+    setDeleteGroup,
+    showAddGroup,
+    setAddGroup,
+    showPriorities,
+    setPriorities,
+    showStages,
+    setStages,
+    showIssueOptions,
+    setIssueOptions,
+    showDateOptions,
+    setDateOptions,
+}) => {
     return (
         <section className='issue-group-container'>
             <div className='issue-group-title-container'>
@@ -64,6 +72,14 @@ export const IssueGroup = ({ title, issues }) => {
                                 completion={issue.finish_by}
                                 priority={issue.priority}
                                 stage={issue.stage}
+                                showPriorities={showPriorities}
+                                setPriorities={setPriorities}
+                                showStages={showStages}
+                                setStages={setStages}
+                                showIssueOptions={showIssueOptions}
+                                setIssueOptions={setIssueOptions}
+                                showDateOptions={showDateOptions}
+                                setDateOptions={setDateOptions}
                             />
                         );
                     })}
@@ -73,8 +89,22 @@ export const IssueGroup = ({ title, issues }) => {
 };
 
 IssueGroup.propTypes = {
+    onChange: PropTypes.func,
     title: PropTypes.string,
     issues: PropTypes.array,
+    showDeleteGroup: PropTypes.bool,
+    setDeleteGroup: PropTypes.func,
+    showAddGroup: PropTypes.bool,
+    setAddGroup: PropTypes.func,
+    groupName: PropTypes.string,
+    showPriorities: PropTypes.bool,
+    setPriorities: PropTypes.func,
+    showStages: PropTypes.bool,
+    setStages: PropTypes.func,
+    showIssueOptions: PropTypes.bool,
+    setIssueOptions: PropTypes.func,
+    showDateOptions: PropTypes.bool,
+    setDateOptions: PropTypes.func,
 };
 
 export default IssueGroup;
