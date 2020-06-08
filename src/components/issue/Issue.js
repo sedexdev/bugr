@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import StatusBtn from "../btns/StatusBtn";
 import StatusSelector from "../status_selector/StatusSelector";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Issue from "../issue/Issue";
 import DeletePopUp from "../delete/Delete";
