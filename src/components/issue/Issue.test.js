@@ -6,6 +6,7 @@ import { mount } from "enzyme";
 import Issue from "./Issue";
 import StatusBtn from "../btns/StatusBtn";
 import StatusSelector from "../status_selector/StatusSelector";
+import IssueOptions from "./IssueOptions";
 
 describe("Issue component", () => {
     test("Renders without crashing", () => {
@@ -55,9 +56,7 @@ describe("Issue component", () => {
                 .find({ className: "issue-menu fas fa-ellipsis-v" })
                 .at(0)
                 .simulate("click");
-            expect(
-                wrapper.find({ className: "issue-options-container" }).length
-            ).toEqual(1);
+            expect(wrapper.find(IssueOptions).length).toEqual(1);
         });
 
         it("should render the date options list when a date options btn is clicked", () => {
@@ -66,9 +65,48 @@ describe("Issue component", () => {
                 .find({ className: "issue-menu fas fa-ellipsis-v" })
                 .at(1)
                 .simulate("click");
-            expect(
-                wrapper.find({ className: "date-options-container" }).length
-            ).toEqual(1);
+            expect(wrapper.find(IssueOptions).length).toEqual(1);
+        });
+    });
+});
+
+describe("IssueOptions component", () => {
+    let props;
+    beforeEach(() => {
+        props = {
+            options: ["Test1", "Test2"],
+        };
+    });
+    test("Renders without crashing", () => {
+        const div = document.createElement("div");
+        ReactDOM.render(<IssueOptions {...props} />, div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
+
+    it("Renders correctly", () => {
+        const tree = renderer.create(<IssueOptions {...props} />);
+        expect(tree).toMatchSnapshot();
+    });
+
+    describe("IssueOptions HTML elements", () => {
+        it("should render a div element", () => {
+            const wrapper = mount(<IssueOptions {...props} />);
+            expect(wrapper.find("div").length).toEqual(1);
+        });
+
+        it("should render an i element", () => {
+            const wrapper = mount(<IssueOptions {...props} />);
+            expect(wrapper.find("i").length).toEqual(1);
+        });
+
+        it("should render a ul element", () => {
+            const wrapper = mount(<IssueOptions {...props} />);
+            expect(wrapper.find("ul").length).toEqual(1);
+        });
+
+        it("should render 2 li elements", () => {
+            const wrapper = mount(<IssueOptions {...props} />);
+            expect(wrapper.find("li").length).toEqual(2);
         });
     });
 });

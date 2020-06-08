@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import StatusBtn from "../btns/StatusBtn";
 import StatusSelector from "../status_selector/StatusSelector";
+import IssueOptions from "./IssueOptions";
 
 import PropTypes from "prop-types";
 
@@ -26,25 +27,11 @@ export const Issue = ({ id, description, completion, priority, stage }) => {
                     onClick={() => setIssueOptions(true)}></i>
                 <div className='issue-options-temp-container'>
                     {showIssueOptions && (
-                        <div className='issue-options-container'>
-                            <i
-                                className='remove-menu-options fas fa-times-circle'
-                                onClick={() => setIssueOptions(false)}></i>
-                            <ul className='issue-options-list'>
-                                <li className='issue-option-list-element'>
-                                    New issue
-                                </li>
-                                <li className='issue-option-list-element'>
-                                    Edit
-                                </li>
-                                <li className='issue-option-list-element'>
-                                    Delete
-                                </li>
-                                <li className='issue-option-list-element'>
-                                    Notes
-                                </li>
-                            </ul>
-                        </div>
+                        <IssueOptions
+                            containerName='issue-options-container'
+                            displayOptions={setIssueOptions}
+                            options={["New Issue", "Edit", "Delete", "Notes"]}
+                        />
                     )}
                 </div>
             </div>
@@ -80,19 +67,11 @@ export const Issue = ({ id, description, completion, priority, stage }) => {
                     onClick={() => setDateOptions(true)}></i>
                 <div className='date-options-temp-container'>
                     {showDateOptions && (
-                        <div className='date-options-container'>
-                            <i
-                                className='remove-menu-options fas fa-times-circle'
-                                onClick={() => setDateOptions(false)}></i>
-                            <ul className='date-options-list'>
-                                <li className='date-option-list-element'>
-                                    Edit
-                                </li>
-                                <li className='date-option-list-element'>
-                                    Delete
-                                </li>
-                            </ul>
-                        </div>
+                        <IssueOptions
+                            containerName='date-options-container'
+                            displayOptions={setDateOptions}
+                            options={["Edit", "Delete"]}
+                        />
                     )}
                 </div>
             </div>
