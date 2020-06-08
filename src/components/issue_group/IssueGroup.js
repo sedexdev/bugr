@@ -33,7 +33,6 @@ export const IssueGroup = ({
                 <div className='group-options-container'>
                     <i
                         className='add-group fas fa-plus-circle'
-                        id={issueGroupId}
                         title='Add'
                         onClick={() => {
                             setAddGroupId(issueGroupId);
