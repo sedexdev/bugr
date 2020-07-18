@@ -89,3 +89,26 @@
 .date-options-container .remove-menu-options {
     margin-left: 75%;
 } 
+
+@media (max-width: 1200px) {
+
+    .issue-container {
+        display: block;
+    }
+
+    .issue-description-container {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .issue-state-btn-container {
+        display: inline-flex;
+        width: 50%;
+        margin: 20px 0 20px 5%;
+    }
+    
+    .date-container {
+        display: inline-flex;
+        width: 35.5%;
+    }
+}
