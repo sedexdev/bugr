@@ -1,6 +1,5 @@
 .side-panel-container {
     position: fixed;
-    top: 30px;
     width: 300px;
     height: 100vh;
     background-color: darkslategrey;
