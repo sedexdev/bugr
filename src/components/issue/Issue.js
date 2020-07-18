@@ -45,9 +45,7 @@ export const Issue = ({
                 </div>
             </div>
             <div className='issue-state-btn-container'>
-                {stagesId === issueId && (
-                    <StatusSelector status='stage' onClick={setStagesId} />
-                )}
+                {stagesId === issueId && <StatusSelector status='stage' onClick={setStagesId} />}
                 <StatusBtn
                     id={stageId}
                     value={stage}
@@ -56,12 +54,7 @@ export const Issue = ({
                         setPrioritiesId("");
                     }}
                 />
-                {prioritiesId === issueId && (
-                    <StatusSelector
-                        status='priority'
-                        onClick={setPrioritiesId}
-                    />
-                )}
+                {prioritiesId === issueId && <StatusSelector status='priority' onClick={setPrioritiesId} />}
                 <StatusBtn
                     id={priorityId}
                     value={priority}
