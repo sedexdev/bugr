@@ -43,3 +43,10 @@
     padding: 20px;
     margin: auto;
 }
+
+@media (max-width: 780px) {
+
+    .issue-box {
+        width: 85%;
+    }
+}
