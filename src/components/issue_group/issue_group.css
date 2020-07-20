@@ -50,3 +50,10 @@
         width: 85%;
     }
 }
+
+@media (max-width: 650px) {
+    
+    .issue-box {
+        width: 80%;
+    }
+}

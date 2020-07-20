@@ -50,3 +50,11 @@
     color: red;
     cursor: pointer;
 }
+
+@media (max-width: 780px) {
+    
+    .status-selector-container {
+        top: 50px;
+        left: 50px;
+    }
+}

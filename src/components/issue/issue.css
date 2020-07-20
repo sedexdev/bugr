@@ -112,3 +112,21 @@
         width: 35.5%;
     }
 }
+
+@media (max-width: 650px) {
+
+    .issue-container {
+        margin: 50px 0;
+    }
+
+    .issue-state-btn-container {
+        display: flex;
+        width: 100%;
+    }
+    
+    .date-container {
+        display: flex;
+        width: 90%;
+        margin: 0 auto;
+    }
+}
