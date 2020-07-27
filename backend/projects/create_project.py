@@ -6,7 +6,6 @@ import json
 
 # project_name = sys.argv[1]
 project_name = 'Some Application'
-
 now = datetime.now()
 today = f'{now.day}/{now.month}/{now.year}'
 
@@ -36,6 +35,7 @@ if not os.path.exists(f'C:\\Users\\{username}\\AppData\\Local\\bugr'):
     os.mkdir(f'C:\\Users\\{username}\\AppData\\Local\\bugr')
 
 project_id = project_data['project_id']
+path = f"C:\\Users\\{username}\\AppData\\Local\\bugr\\{project_name}-{project_id}.json"
 
-with open(f"C:\\Users\\{username}\\AppData\\Local\\bugr\\{project_name}-{project_id}.json", 'w+') as file:
+with open(path, 'w+') as file:
     file.write(json_data)
