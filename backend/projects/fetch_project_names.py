@@ -1,9 +1,7 @@
 import os
 import json
 
-username = os.getlogin()
-app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
-app_data = os.listdir(app_data_path)
+from helpers import app_data_path, app_data
 
 project_names = []
 

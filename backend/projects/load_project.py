@@ -1,11 +1,10 @@
 import os
 import json
 
-username = os.getlogin()
+from helpers import app_data_path, app_data
+
 # project_id = sys.argv[1]
 project_id = '84a67870-928a-482f-98c5-4020e9e23ab0'
-app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
-app_data = os.listdir(app_data_path)
 
 
 def read_files(data, path):
