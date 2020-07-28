@@ -10,9 +10,9 @@ from helpers import find_file, app_data_path, app_data
 # group_id = sys.argv[4]
 # new_description = sys.argv[4]
 project_name = 'Some Application'
-project_id = 'f6b618af-6e82-4f7b-b096-dc5ab0999f53'
-group_id = 'd29b20e2-630d-4598-a8e7-6a833fe7eed0'
-issue_id = 'c9b40293-c171-441e-bce0-8f68df4c3dfc'
+project_id = '3a3c2c18-7aba-4227-8859-6c7036a91298'
+group_id = 'a7ce031b-db26-4c83-99fa-6e72ff841704'
+issue_id = '5298f60e-758b-4201-83dc-5afa192c0de1'
 new_description = 'This is a serious issue!'
 now = datetime.now()
 today = f'{now.day}/{now.month}/{now.year}'

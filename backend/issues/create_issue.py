@@ -9,8 +9,8 @@ from helpers import find_file, app_data_path, app_data
 # project_id = sys.argv[2]
 # group_id = sys.argv[3]
 project_name = 'Some Application'
-project_id = 'f6b618af-6e82-4f7b-b096-dc5ab0999f53'
-group_id = 'd29b20e2-630d-4598-a8e7-6a833fe7eed0'
+project_id = '3a3c2c18-7aba-4227-8859-6c7036a91298'
+group_id = 'a7ce031b-db26-4c83-99fa-6e72ff841704'
 now = datetime.now()
 today = f'{now.day}/{now.month}/{now.year}'
 file_path = find_file(app_data, app_data_path, project_id)

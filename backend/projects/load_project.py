@@ -4,7 +4,7 @@ import json
 from helpers import app_data_path, app_data
 
 # project_id = sys.argv[1]
-project_id = '84a67870-928a-482f-98c5-4020e9e23ab0'
+project_id = '3a3c2c18-7aba-4227-8859-6c7036a91298'
 
 
 def read_files(data, path):
