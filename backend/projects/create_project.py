@@ -18,7 +18,7 @@ project_data = {
         'group_id': str(uuid.uuid4()),
         'created_at': str(now),
         'issues': [{
-            'description': f'{project_name} Issue 1',
+            'description': f'{project_name} Issue',
             'issue_id': str(uuid.uuid4()),
             'created_at': str(now),
             'last_modified': str(now),

@@ -4,7 +4,7 @@ import json
 
 username = os.getlogin()
 # project_id = sys.argv[1]
-project_id = 'cb660ad3-6178-4aef-9eb7-f608dade10c4'
+project_id = '84a67870-928a-482f-98c5-4020e9e23ab0'
 app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
 app_data = os.listdir(app_data_path)
 
