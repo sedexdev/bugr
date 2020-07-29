@@ -42,7 +42,7 @@ const App = () => {
             electron.ipcRenderer.send("project:create", { projectName });
 
             /*
-                Think of a way to load on fresh data instantly when new projects are created
+                Think of a way to reload fresh data instantly when new projects are created
             */
 
             // fetchProjectNames((data) => processProjectNames(data));
