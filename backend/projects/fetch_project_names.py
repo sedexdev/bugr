@@ -12,7 +12,7 @@ def read_files(data, path, projects_list):
             with open(object_path, 'r+') as file:
                 json_data = file.read()
                 data_dict = json.loads(json_data)
-                projects_list['project_names'] = [data_dict['project_name'], data_dict['project_id']]
+                projects_list[data_dict['project_name']] = data_dict['project_id']
 
 
 def main():
