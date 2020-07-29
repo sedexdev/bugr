@@ -1,10 +1,6 @@
 import os
 import json
 
-from helpers import app_data_path, app_data
-
-project_names = []
-
 
 def read_files(data, path, projects_list):
     for obj in data:
@@ -16,12 +12,17 @@ def read_files(data, path, projects_list):
             with open(object_path, 'r+') as file:
                 json_data = file.read()
                 data_dict = json.loads(json_data)
-                projects_list.append(data_dict['project_name'])
+                projects_list['project_names'] = [data_dict['project_name'], data_dict['project_id']]
 
 
-read_files(app_data, app_data_path, project_names)
+def main():
+    username = os.getlogin()
+    app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
+    app_data = os.listdir(app_data_path)
+    project_names = {}
+    read_files(app_data, app_data_path, project_names)
+    print(json.dumps(project_names))
 
-print(project_names)
 
-# open a socket connection to send the list of names back to electron
-# look into the child-process module
+if __name__ == "__main__":
+    main()

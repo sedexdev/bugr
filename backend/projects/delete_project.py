@@ -1,14 +1,9 @@
-import os
 import sys
+import os
 import json
 
-from helpers import app_data_path, app_data
 
-# project_id = sys.argv[1]
-project_id = '84a67870-928a-482f-98c5-4020e9e23ab0'
-
-
-def read_files(data, path):
+def read_files(data, path, project_id):
     for obj in data:
         object_path = f'{path}\\{obj}'
         if os.path.isdir(object_path):
@@ -22,13 +17,22 @@ def read_files(data, path):
                     return object_path
 
 
-file_to_delete = read_files(app_data, app_data_path)
+def main():
+    username = os.getlogin()
+    app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
+    app_data = os.listdir(app_data_path)
+    # project_id = sys.argv[1]
+    project_id = '84a67870-928a-482f-98c5-4020e9e23ab0'
+    file_to_delete = read_files(app_data, app_data_path, project_id)
 
-if file_to_delete:
-    try:
-        os.remove(file_to_delete)
-    except PermissionError:
-        print('You do not have permission to delete this file at this time')
-    except FileNotFoundError:
-        print('The file does not exist')
+    if file_to_delete:
+        try:
+            os.remove(file_to_delete)
+        except PermissionError:
+            print('You do not have permission to delete this file at this time')
+        except FileNotFoundError:
+            print('The file does not exist')
 
+
+if __name__ == "__main__":
+    main()

@@ -1,13 +1,9 @@
+import sys
 import os
 import json
 
-from helpers import app_data_path, app_data
 
-# project_id = sys.argv[1]
-project_id = '3a3c2c18-7aba-4227-8859-6c7036a91298'
-
-
-def read_files(data, path):
+def read_files(data, path, project_id):
     for obj in data:
         object_path = f'{path}\\{obj}'
         if os.path.isdir(object_path):
@@ -21,9 +17,15 @@ def read_files(data, path):
                     return json_data
 
 
-project_data = read_files(app_data, app_data_path)
+def main():
+    username = os.getlogin()
+    app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
+    app_data = os.listdir(app_data_path)
+    # project_id = sys.argv[1]
+    project_id = 'e79136f3-1451-44e4-8ab0-be557ec789ef'
+    project_data = read_files(app_data, app_data_path, project_id)
+    print(project_data)
 
-print(project_data)
 
-# open a socket connection to send the project data back to electron
-# look into the child-process module
+if __name__ == "__main__":
+    main()
