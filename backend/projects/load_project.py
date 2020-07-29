@@ -21,10 +21,9 @@ def main():
     username = os.getlogin()
     app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
     app_data = os.listdir(app_data_path)
-    # project_id = sys.argv[1]
-    project_id = 'e79136f3-1451-44e4-8ab0-be557ec789ef'
+    project_id = sys.argv[1]
     project_data = read_files(app_data, app_data_path, project_id)
-    print(project_data)
+    print(json.dumps(project_data))
 
 
 if __name__ == "__main__":
