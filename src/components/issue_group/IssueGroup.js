@@ -25,6 +25,7 @@ export const IssueGroup = ({
     setIssueOptionsId,
     dateOptionsId,
     setDateOptionsId,
+    onClick,
 }) => {
     return (
         <section className='issue-group-container'>
@@ -33,7 +34,7 @@ export const IssueGroup = ({
                 <div className='group-options-container'>
                     <i
                         className='add-group fas fa-plus-circle'
-                        title='Add'
+                        title='Add Group'
                         onClick={() => {
                             setAddGroupId(issueGroupId);
                             setDeleteGroupId("");
@@ -50,8 +51,10 @@ export const IssueGroup = ({
                     <AddPopUp
                         extraClasses='group-add-position'
                         placeholder='Group name...'
+                        name='groupName'
                         onChange={onChange}
                         revealFunc={setAddGroupId}
+                        onClick={onClick}
                     />
                 )}
                 {currentDeleteGroupId === issueGroupId && (
@@ -107,6 +110,7 @@ IssueGroup.propTypes = {
     setIssueOptionsId: PropTypes.func,
     dateOptionsId: PropTypes.string,
     setDateOptionsId: PropTypes.func,
+    onClick: PropTypes.func,
 };
 
 export default IssueGroup;

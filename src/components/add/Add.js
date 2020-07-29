@@ -4,7 +4,15 @@ import PropTypes from "prop-types";
 
 import "./add.css";
 
-const Add = ({ id, extraClasses, placeholder, onChange, revealFunc }) => {
+const Add = ({
+    id,
+    extraClasses,
+    placeholder,
+    name,
+    onChange,
+    revealFunc,
+    onClick,
+}) => {
     const addClasses = extraClasses
         ? `add-object-container ${extraClasses}`
         : "add-object-container";
@@ -14,7 +22,7 @@ const Add = ({ id, extraClasses, placeholder, onChange, revealFunc }) => {
             <input
                 className='object-title-input'
                 id={id}
-                name='project-text'
+                name={name}
                 type='text'
                 placeholder={placeholder}
                 onChange={(e) => onChange(e)}
@@ -24,7 +32,8 @@ const Add = ({ id, extraClasses, placeholder, onChange, revealFunc }) => {
             <button className='add-project-btn'>
                 <i
                     className='create-object fas fa-check-circle'
-                    title='Create project'></i>
+                    title='Create project'
+                    onClick={onClick}></i>
             </button>
             <button className='add-project-btn'>
                 <i
@@ -39,8 +48,10 @@ Add.propTypes = {
     id: PropTypes.string,
     extraClasses: PropTypes.string,
     placeholder: PropTypes.string,
+    name: PropTypes.string,
     onChange: PropTypes.func,
     revealFunc: PropTypes.func,
+    onClick: PropTypes.func,
 };
 
 export default Add;

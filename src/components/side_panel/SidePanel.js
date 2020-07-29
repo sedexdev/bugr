@@ -4,11 +4,13 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import DeletePopUp from "../delete/Delete";
 import AddPopUp from "../add/Add";
 
+import PropTypes from "prop-types";
+
 import "./side_panel.css";
 
 const project = require("../../test_project_data/project_a.json");
 
-export const SidePanel = () => {
+export const SidePanel = ({ createProject }) => {
     const [showDeleteProject, setDeleteProject] = useState(false);
     const [showAddProject, setAddProject] = useState(false);
     const [projectName, setProjectName] = useState("");
@@ -28,8 +30,10 @@ export const SidePanel = () => {
                 {showAddProject && (
                     <AddPopUp
                         placeholder='Project name...'
+                        name='projectName'
                         onChange={onChange}
                         revealFunc={setAddProject}
+                        onClick={() => createProject(projectName)}
                     />
                 )}
             </div>
@@ -53,6 +57,10 @@ export const SidePanel = () => {
             </div>
         </aside>
     );
+};
+
+SidePanel.propTypes = {
+    createProject: PropTypes.func.isRequired,
 };
 
 export default SidePanel;

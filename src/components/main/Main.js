@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 
 import IssueGroup from "../issue_group/IssueGroup";
 
+import PropTypes from "prop-types";
+
 import "./main.css";
 
 const projectIssues = require("../../test_project_data/project_a.json");
 
-const Main = () => {
+const Main = ({ createGroup }) => {
     const [issueGroups, setIssueGroups] = useState([]);
     const [deleteGroupId, setDeleteGroupId] = useState("");
     const [addGroupId, setAddGroupId] = useState("");
@@ -48,11 +50,16 @@ const Main = () => {
                             setIssueOptionsId={setIssueOptionsId}
                             dateOptionsId={dateOptionsId}
                             setDateOptionsId={setDateOptionsId}
+                            onClick={() => createGroup(groupName)}
                         />
                     );
                 })}
         </main>
     );
+};
+
+Main.propTypes = {
+    createGroup: PropTypes.func.isRequired,
 };
 
 export default Main;
