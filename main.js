@@ -1,12 +1,14 @@
 const path = require("path");
 const url = require("url");
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 
-/*
-    This file will contain main process event listeners that communicate 
-    with the render.js file to send data via electron/send.js to the 
-    Python backend
-*/
+// python-shell linking functions
+const {
+    fetchProjectNames,
+    loadProject,
+    createProject,
+    createGroup,
+} = require("./public/assets/js/send");
 
 process.env.NODE_ENV = "development";
 
@@ -45,7 +47,42 @@ function createMainWindow() {
     mainWindow.on("closed", () => (mainWindow = null));
 }
 
-app.on("ready", createMainWindow);
+app.on("ready", () => {
+    createMainWindow();
+
+    // IPC Initial Data Load
+    fetchProjectNames((data) => {
+        // must wait for the mainWindow to finish loading before sending data
+        mainWindow.webContents.on("did-finish-load", () => {
+            // parse the data that was sent from the python script
+            mainWindow.webContents.send("project:load_names", JSON.parse(data));
+        });
+    });
+});
+
+/* 
+===================================================
+               IPC Event Listeners
+===================================================
+*/
+
+ipcMain.on("project:load", (e, projectId) => {
+    loadProject(projectId, (data) => {
+        // must wait for the mainWindow to finish loading before sending data
+        mainWindow.webContents.on("did-finish-load", () => {
+            // parse the data that was sent from the python script
+            mainWindow.webContents.send("project:loaded", JSON.parse(data));
+        });
+    });
+});
+
+ipcMain.on("project:create", (e, values) => {
+    createProject(values.projectName);
+});
+
+ipcMain.on("group:create", (e, values) => {
+    createGroup(values.projectName, values.groupName, values.projectId);
+});
 
 // Quit when all windows are closed.
 app.on("window-all-closed", function () {
