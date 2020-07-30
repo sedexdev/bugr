@@ -7,7 +7,15 @@ const {
     fetchProjectNames,
     loadProject,
     createProject,
+    deleteProject,
     createGroup,
+    deleteGroup,
+    createIssue,
+    deleteIssue,
+    editIssue,
+    setDate,
+    setPriority,
+    setStage,
 } = require("./public/assets/js/send");
 
 process.env.NODE_ENV = "development";
@@ -66,22 +74,75 @@ app.on("ready", () => {
 ===================================================
 */
 
+/* ----------------- Project Level -----------------  */
+
 ipcMain.on("project:load", (e, projectId) => {
     loadProject(projectId, (data) => {
-        // must wait for the mainWindow to finish loading before sending data
-        mainWindow.webContents.on("did-finish-load", () => {
-            // parse the data that was sent from the python script
-            mainWindow.webContents.send("project:loaded", JSON.parse(data));
-        });
+        mainWindow.webContents.send("project:loaded", data);
     });
 });
 
-ipcMain.on("project:create", (e, values) => {
-    createProject(values.projectName);
+ipcMain.on("project:create", (e, projectName) => {
+    createProject(projectName, (data) => {
+        mainWindow.webContents.send("project:created", data);
+    });
 });
 
+ipcMain.on("project:delete", (e, projectId) => {
+    deleteProject(projectId);
+});
+
+/* ----------------- Group Level -----------------  */
+
 ipcMain.on("group:create", (e, values) => {
-    createGroup(values.projectName, values.groupName, values.projectId);
+    createGroup(
+        values.projectName,
+        values.projectId,
+        values.groupName,
+        (data) => {
+            mainWindow.webContents.send("group:created", data);
+        }
+    );
+});
+
+ipcMain.on("group:delete", (e, values) => {
+    deleteGroup(values.projectId, values.groupId);
+});
+
+/* ----------------- Issue Level -----------------  */
+
+ipcMain.on("issue:create", (e, values) => {
+    createIssue(values.projectName, values.projectId, values.groupId);
+});
+
+ipcMain.on("issue:delete", (e, values) => {
+    deleteIssue(values.projectId, values.groupId, values.issueId);
+});
+
+ipcMain.on("issue:edit", (e, values) => {
+    editIssue(
+        values.projectId,
+        values.groupId,
+        values.issueId,
+        values.description
+    );
+});
+
+ipcMain.on("issue:set_date", (e, values) => {
+    setDate(values.projectId, values.groupId, values.issueId, values.date);
+});
+
+ipcMain.on("issue:set_priority", (e, values) => {
+    setPriority(
+        values.projectId,
+        values.groupId,
+        values.issueId,
+        values.priority
+    );
+});
+
+ipcMain.on("issue:set_stage", (e, values) => {
+    setStage(values.projectId, values.groupId, values.issueId, values.stage);
 });
 
 // Quit when all windows are closed.
