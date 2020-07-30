@@ -70,8 +70,8 @@ export const IssueGroup = ({
                     issues.map((issue) => {
                         return (
                             <Issue
-                                key={issue.id}
-                                issueId={issue.id}
+                                key={issue.issue_id}
+                                issueId={issue.issue_id}
                                 description={issue.description}
                                 completion={issue.finish_by}
                                 priority={issue.priority}
