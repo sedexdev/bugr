@@ -1,6 +1,6 @@
 .delete-project-container {
     position: absolute;
-    left: 150px;
+    left: 180px;
     top: 30px;
     display: flex;
     align-items: center;
@@ -11,6 +11,7 @@
     height: 30px;
     width: fit-content;
     padding: 0 5px;
+    z-index: 1;
 }
 
 .delete-project-msg {
@@ -47,4 +48,11 @@
     position: relative;
     left: 10px;
     top: 0;
+}
+
+@media (max-width: 960px) {
+
+    .delete-project-container {
+        left: 150px;
+    }
 }

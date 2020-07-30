@@ -1,6 +1,6 @@
 .add-object-container {
     position: absolute;
-    left: 250px;
+    left: 220px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,4 +42,11 @@
 .group-add-position {
     position: relative;
     left: 10px;
+}
+
+@media (max-width: 960px) {
+
+    .add-object-container {
+        left: 210px;
+    }
 }

@@ -1,6 +1,6 @@
 .side-panel-container {
     position: fixed;
-    width: 300px;
+    width: 250px;
     height: 100vh;
     background-color: darkslategrey;
     border-right: 1px solid #222;
@@ -36,18 +36,19 @@
 .project-link {
     position: relative;
     display: flex;
+    justify-content: center;
 }
 
-.project-link a {
+.project-link-title {
     text-decoration: none;
     color: #fff;
     font-family: 'Indie Flower', cursive;
     font-size: 1.8rem;
-    margin: 10px 0 10px 30px;
+    margin: 10px 0;
     cursor: pointer;
 }
 
-.project-link a:hover  {
+.project-link-title:hover  {
     color: #222;
 }
 

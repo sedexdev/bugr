@@ -1,5 +1,5 @@
 .main-application-container {
-    margin-left: 300px;
+    margin-left: 250px;
     margin-bottom: 100px;
 }
 
@@ -9,6 +9,26 @@
     text-align: center;
     margin: 0 !important;
     padding-top: 60px;
+}
+
+.welcome-message {
+    text-align: center;
+    padding: 100px 0;
+    margin: auto;
+}
+
+.welcome-message p {
+    display: block;
+    font-size: 1.2rem;
+    padding: 20px 200px;
+}
+
+.bugr-icon-main {
+    height: auto;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
 }
 
 @media (max-width: 960px) {
@@ -22,6 +42,17 @@
 
     .main-application-container {
         margin-left: 0;
+    }
+
+    .welcome-message p {
+        padding: 20px 100px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .welcome-message p {
+        padding: 20px 40px;
     }
 }
 
