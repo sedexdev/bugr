@@ -24,42 +24,48 @@ const App = () => {
             processProjectNames(projectNames);
         });
 
-        electron.ipcRenderer.send(
-            "project:load",
-            // Make this dynamic
-            localStorage.getItem("CoScript")
-        );
-
         electron.ipcRenderer.on("project:loaded", (e, projectData) => {
-            if (projectData) {
-                localStorage.setItem("currentData", projectData);
-            }
+            localStorage.setItem("currentData", projectData);
+        });
+
+        electron.ipcRenderer.on("project:created", (e, projectData) => {
+            const data = JSON.parse(projectData);
+            localStorage.setItem(data.project_name, data.project_id);
+            localStorage.setItem("currentData", projectData);
+        });
+
+        electron.ipcRenderer.on("group:created", (e, projectData) => {
+            localStorage.setItem("currentData", projectData);
         });
     }, []);
 
-    const createProject = (projectName) => {
-        if (projectName) {
-            electron.ipcRenderer.send("project:create", { projectName });
-
-            /*
-                Think of a way to reload fresh data instantly when new projects are created
-            */
-
-            // fetchProjectNames((data) => processProjectNames(data));
+    const loadProject = (projectId) => {
+        if (projectId) {
+            electron.ipcRenderer.send("project:load", projectId);
         } else {
             console.log("Error, project name must be supplied");
         }
     };
 
-    const createGroup = (groupName) => {
-        if (groupName) {
-            const projectName = localStorage.getItem("projectName");
-            const projectId = localStorage.getItem("projectId");
-            electron.ipcRenderer.send("group:create", {
-                projectName,
-                groupName,
-                projectId,
-            });
+    const createProject = (projectName) => {
+        if (projectName) {
+            electron.ipcRenderer.send("project:create", projectName);
+        } else {
+            console.log("Error, project name must be supplied");
+        }
+    };
+
+    const deleteProject = (projectId) => {
+        if (projectId) {
+            electron.ipcRenderer.send("project:delete", projectId);
+        } else {
+            console.log("Error, project ID must be supplied");
+        }
+    };
+
+    const createGroup = (values) => {
+        if (values.groupName) {
+            electron.ipcRenderer.send("group:create", values);
         } else {
             console.log("Error, group name must be supplied");
         }
@@ -67,8 +73,12 @@ const App = () => {
 
     return (
         <div className='App'>
-            <SidePanel createProject={createProject} />
-            <Main createGroup={createGroup} />
+            <SidePanel
+                createProject={createProject}
+                deleteProject={deleteProject}
+                loadProject={loadProject}
+            />
+            <Main createGroup={createGroup} loadProject={loadProject} />
         </div>
     );
 };
