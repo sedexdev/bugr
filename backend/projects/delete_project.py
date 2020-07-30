@@ -21,8 +21,7 @@ def main():
     username = os.getlogin()
     app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
     app_data = os.listdir(app_data_path)
-    # project_id = sys.argv[1]
-    project_id = '84a67870-928a-482f-98c5-4020e9e23ab0'
+    project_id = sys.argv[1]
     file_to_delete = read_files(app_data, app_data_path, project_id)
 
     if file_to_delete:

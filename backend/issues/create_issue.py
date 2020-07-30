@@ -23,12 +23,9 @@ def main():
     username = os.getlogin()
     app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
     app_data = os.listdir(app_data_path)
-    # project_name = sys.argv[1]
-    # project_id = sys.argv[2]
-    # group_id = sys.argv[3]
-    project_name = 'Some Application'
-    project_id = '3a3c2c18-7aba-4227-8859-6c7036a91298'
-    group_id = 'a7ce031b-db26-4c83-99fa-6e72ff841704'
+    project_name = sys.argv[1]
+    project_id = sys.argv[2]
+    group_id = sys.argv[3]
     now = datetime.now()
     today = f'{now.day}/{now.month}/{now.year}'
     file_path = find_file(app_data, app_data_path, project_id)
@@ -52,6 +49,8 @@ def main():
     with open(file_path, 'w+') as new_file:
         new_json_data = json.dumps(original_data_dict)
         new_file.write(new_json_data)
+
+    print(json.dumps(original_data_dict))
 
 
 if __name__ == "__main__":

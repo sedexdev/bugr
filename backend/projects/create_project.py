@@ -41,7 +41,7 @@ def main():
     with open(path, 'w+') as file:
         file.write(json_data)
 
-    print(f'Project {project_name} created!')
+    print(json.dumps(project_data))
 
 
 if __name__ == "__main__":
