@@ -4,11 +4,12 @@
 }
 
 .main-project-title {
-    font-family: 'Indie Flower', cursive;
     color: #111;
+    width: 20%;
     text-align: center;
-    margin: 0 !important;
-    padding-top: 60px;
+    border-bottom: 1px solid darkslategrey;
+    margin: 0 auto 40px auto !important;
+    padding: 60px 0 20px 0;
 }
 
 .welcome-message {
