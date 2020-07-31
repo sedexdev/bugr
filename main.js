@@ -100,23 +100,35 @@ ipcMain.on("group:create", (e, values) => {
         values.projectId,
         values.groupName,
         (data) => {
-            mainWindow.webContents.send("group:created", data);
+            mainWindow.webContents.send("project:edited", data);
         }
     );
 });
 
 ipcMain.on("group:delete", (e, values) => {
-    deleteGroup(values.projectId, values.groupId);
+    deleteGroup(values.projectId, values.groupId, (data) => {
+        mainWindow.webContents.send("project:edited", data);
+    });
 });
 
 /* ----------------- Issue Level -----------------  */
 
 ipcMain.on("issue:create", (e, values) => {
-    createIssue(values.projectName, values.projectId, values.groupId);
+    console.log(values);
+    createIssue(
+        values.projectName,
+        values.projectId,
+        values.groupId,
+        (data) => {
+            mainWindow.webContents.send("project:edited", data);
+        }
+    );
 });
 
 ipcMain.on("issue:delete", (e, values) => {
-    deleteIssue(values.projectId, values.groupId, values.issueId);
+    deleteIssue(values.projectId, values.groupId, values.issueId, (data) => {
+        mainWindow.webContents.send("project:edited", data);
+    });
 });
 
 ipcMain.on("issue:edit", (e, values) => {
@@ -124,12 +136,23 @@ ipcMain.on("issue:edit", (e, values) => {
         values.projectId,
         values.groupId,
         values.issueId,
-        values.description
+        values.description,
+        (data) => {
+            mainWindow.webContents.send("project:edited", data);
+        }
     );
 });
 
 ipcMain.on("issue:set_date", (e, values) => {
-    setDate(values.projectId, values.groupId, values.issueId, values.date);
+    setDate(
+        values.projectId,
+        values.groupId,
+        values.issueId,
+        values.date,
+        (data) => {
+            mainWindow.webContents.send("project:edited", data);
+        }
+    );
 });
 
 ipcMain.on("issue:set_priority", (e, values) => {
@@ -137,12 +160,23 @@ ipcMain.on("issue:set_priority", (e, values) => {
         values.projectId,
         values.groupId,
         values.issueId,
-        values.priority
+        values.priority,
+        (data) => {
+            mainWindow.webContents.send("project:edited", data);
+        }
     );
 });
 
 ipcMain.on("issue:set_stage", (e, values) => {
-    setStage(values.projectId, values.groupId, values.issueId, values.stage);
+    setStage(
+        values.projectId,
+        values.groupId,
+        values.issueId,
+        values.stage,
+        (data) => {
+            mainWindow.webContents.send("project:edited", data);
+        }
+    );
 });
 
 // Quit when all windows are closed.
