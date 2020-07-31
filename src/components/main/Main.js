@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import "./main.css";
 
 const Main = ({
-    projectNamesIds,
+    projectNames,
     currentData,
     deleteGroupId,
     setDeleteGroupId,
@@ -34,7 +34,7 @@ const Main = ({
 
     return (
         <main className='main-application-container'>
-            {currentData && projectNamesIds.length ? (
+            {currentData && projectNames.length ? (
                 <Fragment>
                     <h1 className='main-project-title'>
                         {currentData.project_name}
@@ -91,7 +91,7 @@ const Main = ({
 };
 
 Main.propTypes = {
-    projectNamesIds: PropTypes.array,
+    projectNames: PropTypes.array,
     currentData: PropTypes.object,
     deleteGroupId: PropTypes.string,
     setDeleteGroupId: PropTypes.func,

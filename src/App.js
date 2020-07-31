@@ -13,7 +13,7 @@ const App = () => {
     const [, updateState] = useState();
 
     // Side panel component state
-    const [projectNamesIds, setProjectNamesIds] = useState([]);
+    const [projectNames, setProjectNames] = useState([]);
     const [showDeleteProject, setDeleteProject] = useState("");
     const [projectLinkId, setProjectLinkId] = useState("");
     const [showAddProject, setAddProject] = useState("");
@@ -31,7 +31,7 @@ const App = () => {
 
     const updateAppState = useCallback(() => {
         setTimeout(() => {
-            setProjectNamesIds(Object.keys(localStorage));
+            setProjectNames(Object.keys(localStorage));
             const data = localStorage.getItem("currentData");
             if (data) {
                 setCurrentData(JSON.parse(data));
@@ -66,7 +66,7 @@ const App = () => {
         }
 
         if (Object.keys(localStorage)) {
-            setProjectNamesIds(Object.keys(localStorage));
+            setProjectNames(Object.keys(localStorage));
         }
     }, []);
 
@@ -139,8 +139,8 @@ const App = () => {
     return (
         <div className='App'>
             <SidePanel
-                projectNamesIds={projectNamesIds}
-                setProjectNamesIds={setProjectNamesIds}
+                projectNames={projectNames}
+                setProjectNames={setProjectNames}
                 showDeleteProject={showDeleteProject}
                 setDeleteProject={setDeleteProject}
                 projectLinkId={projectLinkId}
@@ -156,7 +156,7 @@ const App = () => {
                 loadProject={loadProject}
             />
             <Main
-                projectNamesIds={projectNamesIds}
+                projectNames={projectNames}
                 currentData={currentData}
                 setCurrentData={setCurrentData}
                 deleteGroupId={deleteGroupId}

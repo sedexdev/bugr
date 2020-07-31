@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import "./side_panel.css";
 
 export const SidePanel = ({
-    projectNamesIds,
+    projectNames,
     showDeleteProject,
     setDeleteProject,
     projectLinkId,
@@ -49,8 +49,8 @@ export const SidePanel = ({
                 )}
             </div>
             <div className='project-list-container'>
-                {projectNamesIds &&
-                    projectNamesIds.map((key) => {
+                {projectNames &&
+                    projectNames.map((key) => {
                         const value = localStorage.getItem(key);
                         return key !== "currentData" ? (
                             <div key={value} className='project-link'>
@@ -98,7 +98,7 @@ export const SidePanel = ({
 };
 
 SidePanel.propTypes = {
-    projectNamesIds: PropTypes.array,
+    projectNames: PropTypes.array,
     showDeleteProject: PropTypes.string,
     setDeleteProject: PropTypes.func,
     projectLinkId: PropTypes.string,
