@@ -41,6 +41,7 @@
     border: 3px dashed greenyellow;
     padding: 20px;
     margin: auto;
+    box-shadow: 5px 5px 15px #cecece;
 }
 
 @media (max-width: 780px) {
