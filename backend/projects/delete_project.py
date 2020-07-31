@@ -8,7 +8,7 @@ def read_files(data, path, project_id):
         object_path = f'{path}\\{obj}'
         if os.path.isdir(object_path):
             contents = os.listdir(object_path)
-            return read_files(contents, object_path)
+            return read_files(contents, object_path, project_id)
         else:
             with open(object_path, 'r+') as file:
                 json_data = file.read()
