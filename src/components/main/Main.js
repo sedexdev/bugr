@@ -25,9 +25,26 @@ const Main = ({
     setDateOptionsId,
     updateAppState,
     createGroup,
+    deleteGroup,
+    createIssue,
+    deleteIssue,
+    editIssue,
+    setDate,
+    setPriority,
+    setStage,
 }) => {
     const onChangeGroupName = (e) => {
         setGroupName(e.target.value);
+    };
+
+    const getOptions = (data, id) => {
+        for (let group of data.groups) {
+            if (group.group_id === id) {
+                return group.issues.length === 1
+                    ? ["New Issue", "Edit", "Notes"]
+                    : ["New Issue", "Edit", "Delete", "Notes"];
+            }
+        }
     };
 
     const bugrIcon = require("../../images/bug.png");
@@ -43,6 +60,7 @@ const Main = ({
                         return (
                             <IssueGroup
                                 key={issueGroup.group_id}
+                                currentData={currentData}
                                 issueGroupId={issueGroup.group_id}
                                 setAddGroupId={setAddGroupId}
                                 currentAddGroupId={addGroupId}
@@ -59,7 +77,8 @@ const Main = ({
                                 setIssueOptionsId={setIssueOptionsId}
                                 dateOptionsId={dateOptionsId}
                                 setDateOptionsId={setDateOptionsId}
-                                onClick={() => {
+                                updateAppState={updateAppState}
+                                createGroup={() => {
                                     createGroup({
                                         projectName: currentData.project_name,
                                         projectId: currentData.project_id,
@@ -67,6 +86,17 @@ const Main = ({
                                     });
                                     updateAppState();
                                 }}
+                                deleteGroup={deleteGroup}
+                                createIssue={createIssue}
+                                deleteIssue={deleteIssue}
+                                editIssue={editIssue}
+                                setDate={setDate}
+                                setPriority={setPriority}
+                                setStage={setStage}
+                                options={getOptions(
+                                    currentData,
+                                    issueGroup.group_id
+                                )}
                             />
                         );
                     })}
@@ -107,8 +137,15 @@ Main.propTypes = {
     setIssueOptionsId: PropTypes.func,
     dateOptionsId: PropTypes.string,
     setDateOptionsId: PropTypes.func,
-    updateAppState: PropTypes.func.isRequired,
-    createGroup: PropTypes.func.isRequired,
+    updateAppState: PropTypes.func,
+    createGroup: PropTypes.func,
+    deleteGroup: PropTypes.func,
+    createIssue: PropTypes.func,
+    deleteIssue: PropTypes.func,
+    editIssue: PropTypes.func,
+    setDate: PropTypes.func,
+    setPriority: PropTypes.func,
+    setStage: PropTypes.func,
 };
 
 export default Main;
