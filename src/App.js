@@ -14,9 +14,9 @@ const App = () => {
 
     // Side panel component state
     const [projectNamesIds, setProjectNamesIds] = useState([]);
-    const [showDeleteProject, setDeleteProject] = useState(false);
+    const [showDeleteProject, setDeleteProject] = useState("");
     const [projectLinkId, setProjectLinkId] = useState("");
-    const [showAddProject, setAddProject] = useState(false);
+    const [showAddProject, setAddProject] = useState("");
     const [projectName, setProjectName] = useState("");
 
     // Main component state
@@ -48,7 +48,7 @@ const App = () => {
         });
 
         electron.ipcRenderer.on("project:loaded", (e, projectData) => {
-            localStorage.setItem("currentData", projectData);
+            localStorage.setItem("currentData", JSON.parse(projectData));
         });
 
         electron.ipcRenderer.on("project:created", (e, projectData) => {
@@ -70,12 +70,30 @@ const App = () => {
         }
     }, []);
 
+    /* -------------------- UI Functions -------------------- */
+
     const processProjectNames = (projectNames) => {
         if (projectNames) {
             for (let key in projectNames) {
                 localStorage.setItem(key, projectNames[key]);
             }
         }
+    };
+
+    const checkStorage = () => {
+        const data = localStorage.getItem("currentData");
+        if (!data) {
+            let projectId;
+            const keys = Object.keys(localStorage);
+            for (let key of keys) {
+                projectId = localStorage.getItem(key);
+            }
+            if (projectId) {
+                loadProject(projectId);
+            }
+            return true;
+        }
+        return true;
     };
 
     /* -------------------- Project Level Functions -------------------- */
@@ -131,12 +149,14 @@ const App = () => {
                 setAddProject={setAddProject}
                 projectName={projectName}
                 setProjectName={setProjectName}
+                checkStorage={checkStorage}
                 updateAppState={updateAppState}
                 createProject={createProject}
                 deleteProject={deleteProject}
                 loadProject={loadProject}
             />
             <Main
+                projectNamesIds={projectNamesIds}
                 currentData={currentData}
                 setCurrentData={setCurrentData}
                 deleteGroupId={deleteGroupId}
