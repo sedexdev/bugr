@@ -10,6 +10,7 @@ import "./issue_group.css";
 
 export const IssueGroup = ({
     issueGroupId,
+    currentData,
     setAddGroupId,
     currentAddGroupId,
     setDeleteGroupId,
@@ -25,7 +26,16 @@ export const IssueGroup = ({
     setIssueOptionsId,
     dateOptionsId,
     setDateOptionsId,
-    onClick,
+    updateAppState,
+    createGroup,
+    deleteGroup,
+    createIssue,
+    deleteIssue,
+    editIssue,
+    setDate,
+    setPriority,
+    setStage,
+    options,
 }) => {
     return (
         <section className='issue-group-container'>
@@ -54,7 +64,8 @@ export const IssueGroup = ({
                         name='groupName'
                         onChange={onChange}
                         revealFunc={setAddGroupId}
-                        onClick={onClick}
+                        onClick={createGroup}
+                        updateAppState={updateAppState}
                     />
                 )}
                 {currentDeleteGroupId === issueGroupId && (
@@ -62,6 +73,13 @@ export const IssueGroup = ({
                         title={title}
                         extraClasses='group-delete-position'
                         revealFunc={setDeleteGroupId}
+                        onClick={() => {
+                            deleteGroup({
+                                projectId: currentData.project_id,
+                                groupId: currentDeleteGroupId,
+                            });
+                            updateAppState();
+                        }}
                     />
                 )}
             </div>
@@ -84,6 +102,15 @@ export const IssueGroup = ({
                                 setIssueOptionsId={setIssueOptionsId}
                                 dateOptionsId={dateOptionsId}
                                 setDateOptionsId={setDateOptionsId}
+                                createIssue={createIssue}
+                                deleteIssue={deleteIssue}
+                                editIssue={editIssue}
+                                setDate={setDate}
+                                setPriority={setPriority}
+                                setStage={setStage}
+                                issueGroupId={issueGroupId}
+                                updateAppState={updateAppState}
+                                options={options}
                             />
                         );
                     })}
@@ -94,6 +121,7 @@ export const IssueGroup = ({
 
 IssueGroup.propTypes = {
     issueGroupId: PropTypes.string,
+    currentData: PropTypes.object,
     setAddGroupId: PropTypes.func,
     currentAddGroupId: PropTypes.string,
     setDeleteGroupId: PropTypes.func,
@@ -110,7 +138,16 @@ IssueGroup.propTypes = {
     setIssueOptionsId: PropTypes.func,
     dateOptionsId: PropTypes.string,
     setDateOptionsId: PropTypes.func,
-    onClick: PropTypes.func,
+    updateAppState: PropTypes.func,
+    createGroup: PropTypes.func.isRequired,
+    deleteGroup: PropTypes.func.isRequired,
+    createIssue: PropTypes.func.isRequired,
+    deleteIssue: PropTypes.func.isRequired,
+    editIssue: PropTypes.func.isRequired,
+    setDate: PropTypes.func.isRequired,
+    setPriority: PropTypes.func.isRequired,
+    setStage: PropTypes.func.isRequired,
+    options: PropTypes.array,
 };
 
 export default IssueGroup;
