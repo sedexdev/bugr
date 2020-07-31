@@ -18,6 +18,7 @@ export const SidePanel = ({
     projectName,
     setProjectName,
     updateAppState,
+    checkStorage,
     loadProject,
     createProject,
     deleteProject,
@@ -33,7 +34,7 @@ export const SidePanel = ({
                 <i
                     className='add-project fas fa-plus-circle'
                     title='New project'
-                    onClick={() => setAddProject(true)}></i>
+                    onClick={() => setAddProject("display")}></i>
                 {showAddProject && (
                     <AddPopUp
                         placeholder='Project name...'
@@ -59,7 +60,7 @@ export const SidePanel = ({
                                     id={value}
                                     title='Delete project'
                                     onClick={() => {
-                                        setDeleteProject(true);
+                                        setDeleteProject("display");
                                         setProjectLinkId(value);
                                     }}></i>
                                 {value === projectLinkId && showDeleteProject && (
@@ -81,7 +82,10 @@ export const SidePanel = ({
                                             }
                                             localStorage.removeItem(key);
                                             deleteProject(projectLinkId);
-                                            updateAppState();
+                                            const checked = checkStorage();
+                                            if (checked) {
+                                                updateAppState();
+                                            }
                                         }}
                                     />
                                 )}
@@ -103,6 +107,7 @@ SidePanel.propTypes = {
     setAddProject: PropTypes.func,
     projectName: PropTypes.string,
     setProjectName: PropTypes.func,
+    checkStorage: PropTypes.func,
     loadProject: PropTypes.func.isRequired,
     createProject: PropTypes.func.isRequired,
     deleteProject: PropTypes.func.isRequired,
