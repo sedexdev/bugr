@@ -20,23 +20,6 @@ exports[`SidePanel component renders correctly 1`] = `
   </div>
   <div
     className="project-list-container"
-  >
-    <div
-      className="project-link"
-    >
-      <a
-        href="/"
-        onClick={[Function]}
-      >
-        Project A
-      </a>
-      <i
-        className="delete-project fas fa-times-circle"
-        id="Project A"
-        onClick={[Function]}
-        title="Delete project"
-      />
-    </div>
-  </div>
+  />
 </aside>
 `;

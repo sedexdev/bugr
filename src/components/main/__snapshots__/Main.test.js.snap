@@ -4,11 +4,20 @@ exports[`Main component Renders correctly 1`] = `
 <main
   className="main-application-container"
 >
-  <h1
-    className="main-project-title"
+  <div
+    className="welcome-message"
   >
-    Project A
-  </h1>
-  0
+    <img
+      alt="Loading"
+      className="bugr-icon-main"
+      src="bug.png"
+    />
+    <p>
+      Welcome to Bugr! This app has been designed to make tracking issues in your application development cycle clean and simple.
+    </p>
+    <p>
+      Use the Project Panel on the left to get started!
+    </p>
+  </div>
 </main>
 `;

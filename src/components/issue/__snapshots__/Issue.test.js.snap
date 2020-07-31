@@ -254,11 +254,13 @@ exports[`IssueOptions component Renders correctly 1`] = `
   >
     <li
       className="issue-option-list-element"
+      onClick={[Function]}
     >
       Test1
     </li>
     <li
       className="issue-option-list-element"
+      onClick={[Function]}
     >
       Test2
     </li>

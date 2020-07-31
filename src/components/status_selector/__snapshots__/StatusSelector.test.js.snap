@@ -6,6 +6,7 @@ exports[`StatusOption component Renders correctly 1`] = `
 >
   <div
     className="undefined status-color"
+    onClick={[Function]}
   >
     <p
       className="status-title"
@@ -34,6 +35,7 @@ exports[`StatusSelector component Renders correctly 1`] = `
   >
     <div
       className="Stuck status-color"
+      onClick={[Function]}
     >
       <p
         className="status-title"
@@ -47,6 +49,7 @@ exports[`StatusSelector component Renders correctly 1`] = `
   >
     <div
       className="Complete status-color"
+      onClick={[Function]}
     >
       <p
         className="status-title"
@@ -60,6 +63,7 @@ exports[`StatusSelector component Renders correctly 1`] = `
   >
     <div
       className="Progressing status-color"
+      onClick={[Function]}
     >
       <p
         className="status-title"
@@ -73,6 +77,7 @@ exports[`StatusSelector component Renders correctly 1`] = `
   >
     <div
       className="Todo status-color"
+      onClick={[Function]}
     >
       <p
         className="status-title"
