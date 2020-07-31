@@ -37,7 +37,7 @@ const App = () => {
                 setCurrentData(JSON.parse(data));
             }
             updateState({});
-        }, 1000);
+        }, 200);
     }, []);
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const App = () => {
             localStorage.setItem("currentData", projectData);
         });
 
-        electron.ipcRenderer.on("group:created", (e, projectData) => {
+        electron.ipcRenderer.on("project:edited", (e, projectData) => {
             localStorage.setItem("currentData", projectData);
         });
 
@@ -114,8 +114,6 @@ const App = () => {
         }
     };
 
-    // Need to handle what happens to currentData object if
-    // it is deleted as part of a project deletion event
     const deleteProject = (projectId) => {
         if (projectId) {
             electron.ipcRenderer.send("project:delete", projectId);
@@ -134,7 +132,75 @@ const App = () => {
         }
     };
 
+    const deleteGroup = (values) => {
+        if (values) {
+            electron.ipcRenderer.send("group:delete", values);
+        } else {
+            console.log("Error, project and group IDs must be supplied");
+        }
+    };
+
     /* -------------------- Issue Level Functions -------------------- */
+
+    const createIssue = (values) => {
+        if (values) {
+            electron.ipcRenderer.send("issue:create", values);
+        } else {
+            console.log(
+                "Error, project name and project and group IDs must be supplied"
+            );
+        }
+    };
+
+    const deleteIssue = (values) => {
+        if (values) {
+            electron.ipcRenderer.send("issue:delete", values);
+        } else {
+            console.log(
+                "Error, project name and project, group and issue IDs must be supplied"
+            );
+        }
+    };
+
+    const editIssue = (values) => {
+        if (values.description) {
+            electron.ipcRenderer.send("issue:edit", values);
+        } else {
+            console.log(
+                "Error, project name and project, group and issue IDs and an issue description must be supplied"
+            );
+        }
+    };
+
+    const setDate = (values) => {
+        if (values.date) {
+            electron.ipcRenderer.send("issue:set_date", values);
+        } else {
+            console.log(
+                "Error, project name and project, group and issue IDs and an issue date must be supplied"
+            );
+        }
+    };
+
+    const setPriority = (values) => {
+        if (values) {
+            electron.ipcRenderer.send("issue:set_priority", values);
+        } else {
+            console.log(
+                "Error, project name and project, group and issue IDs and an issue priority must be supplied"
+            );
+        }
+    };
+
+    const setStage = (values) => {
+        if (values) {
+            electron.ipcRenderer.send("issue:set_stage", values);
+        } else {
+            console.log(
+                "Error, project name and project, group and issue IDs and an issue stage must be supplied"
+            );
+        }
+    };
 
     return (
         <div className='App'>
@@ -174,8 +240,15 @@ const App = () => {
                 dateOptionsId={dateOptionsId}
                 setDateOptionsId={setDateOptionsId}
                 updateAppState={updateAppState}
-                createGroup={createGroup}
                 loadProject={loadProject}
+                createGroup={createGroup}
+                deleteGroup={deleteGroup}
+                createIssue={createIssue}
+                deleteIssue={deleteIssue}
+                editIssue={editIssue}
+                setDate={setDate}
+                setPriority={setPriority}
+                setStage={setStage}
             />
         </div>
     );
