@@ -1,7 +1,7 @@
 .delete-project-container {
-    position: absolute;
-    left: 180px;
-    top: 30px;
+    position: relative;
+    left: 10px;
+    top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,7 +9,7 @@
     border: 1px solid #222;
     background-color: #fff;
     height: 30px;
-    width: fit-content;
+    min-width: fit-content;
     padding: 0 5px;
     z-index: 1;
 }
