@@ -32,13 +32,6 @@
     margin: auto;
 }
 
-@media (max-width: 960px) {
-
-    .main-application-container {
-        margin-left: 200px;
-    }
-}
-
 @media (max-width: 780px) {
 
     .main-application-container {

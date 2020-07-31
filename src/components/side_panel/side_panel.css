@@ -63,13 +63,6 @@
     transform: scale(1.1);
 }
 
-@media (max-width: 960px) {
-
-    .side-panel-container {
-        width: 200px;
-    }
-}
-
 @media (max-width: 780px) {
 
     .side-panel-container {

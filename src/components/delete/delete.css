@@ -49,10 +49,3 @@
     left: 10px;
     top: 0;
 }
-
-@media (max-width: 960px) {
-
-    .delete-project-container {
-        left: 150px;
-    }
-}
