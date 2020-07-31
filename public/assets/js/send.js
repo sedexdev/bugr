@@ -106,10 +106,11 @@ const createGroup = (projectName, projectId, groupName, callback) => {
     });
 };
 
-const deleteGroup = (projectId, groupId) => {
+const deleteGroup = (projectId, groupId, callback) => {
     groupOptions.args = [projectId, groupId];
-    PythonShell.run("delete_group.py", groupOptions, function (err) {
+    PythonShell.run("delete_group.py", groupOptions, function (err, results) {
         if (err) throw err;
+        callback(results);
     });
 };
 
@@ -119,46 +120,52 @@ const deleteGroup = (projectId, groupId) => {
 ===================================================
 */
 
-const createIssue = (projectName, projectId, groupId) => {
+const createIssue = (projectName, projectId, groupId, callback) => {
     issueOptions.args = [projectName, projectId, groupId];
-    PythonShell.run("create_issue.py", issueOptions, function (err) {
+    PythonShell.run("create_issue.py", issueOptions, function (err, results) {
         if (err) throw err;
+        callback(results);
     });
 };
 
-const deleteIssue = (projectId, groupId, issueId) => {
+const deleteIssue = (projectId, groupId, issueId, callback) => {
     issueOptions.args = [projectId, groupId, issueId];
-    PythonShell.run("delete_issue.py", issueOptions, function (err) {
+    PythonShell.run("delete_issue.py", issueOptions, function (err, results) {
         if (err) throw err;
+        callback(results);
     });
 };
 
-const editIssue = (projectId, groupId, issueId, description) => {
+const editIssue = (projectId, groupId, issueId, description, callback) => {
     issueOptions.args = [projectId, groupId, issueId, description];
-    PythonShell.run("edit_issue.py", issueOptions, function (err) {
+    PythonShell.run("edit_issue.py", issueOptions, function (err, results) {
         if (err) throw err;
+        callback(results);
     });
 };
 
-const setDate = (projectId, groupId, issueId, date) => {
+const setDate = (projectId, groupId, issueId, date, callback) => {
     issueOptions.args = [projectId, groupId, issueId, date];
-    PythonShell.run("set_date.py", issueOptions, function (err) {
+    PythonShell.run("set_date.py", issueOptions, function (err, results) {
         if (err) throw err;
+        callback(results);
     });
 };
 
-const setPriority = (projectId, groupId, issueId, priority) => {
+const setPriority = (projectId, groupId, issueId, priority, callback) => {
     issueOptions.args = [projectId, groupId, issueId, priority];
 
-    PythonShell.run("set_priority.py", issueOptions, function (err) {
+    PythonShell.run("set_priority.py", issueOptions, function (err, results) {
         if (err) throw err;
+        callback(results);
     });
 };
 
-const setStage = (projectId, groupId, issueId, stage) => {
+const setStage = (projectId, groupId, issueId, stage, callback) => {
     issueOptions.args = [projectId, groupId, issueId, stage];
-    PythonShell.run("set_stage.py", issueOptions, function (err) {
+    PythonShell.run("set_stage.py", issueOptions, function (err, results) {
         if (err) throw err;
+        callback(results);
     });
 };
 
