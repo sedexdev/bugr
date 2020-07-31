@@ -35,7 +35,7 @@ Delete.propTypes = {
     title: PropTypes.string,
     extraClasses: PropTypes.string,
     revealFunc: PropTypes.func,
-    revealFunc: PropTypes.func,
+    onClick: PropTypes.func,
 };
 
 export default Delete;
