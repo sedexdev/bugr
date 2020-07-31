@@ -22,6 +22,15 @@ export const Issue = ({
     setIssueOptionsId,
     dateOptionsId,
     setDateOptionsId,
+    createIssue,
+    deleteIssue,
+    editIssue,
+    setDate,
+    setPriority,
+    setStage,
+    issueGroupId,
+    updateAppState,
+    options,
 }) => {
     const stageId = `stage-${issueId}`;
     const priorityId = `priority-${issueId}`;
@@ -39,13 +48,29 @@ export const Issue = ({
                         <IssueOptions
                             containerName='issue-options-container'
                             displayOptions={setIssueOptionsId}
-                            options={["New Issue", "Edit", "Delete", "Notes"]}
+                            issueGroupId={issueGroupId}
+                            issueId={issueId}
+                            createIssue={createIssue}
+                            deleteIssue={deleteIssue}
+                            setIssueOptionsId={setIssueOptionsId}
+                            updateAppState={updateAppState}
+                            options={options}
                         />
                     )}
                 </div>
             </div>
             <div className='issue-state-btn-container'>
-                {stagesId === issueId && <StatusSelector status='stage' onClick={setStagesId} />}
+                {stagesId === issueId && (
+                    <StatusSelector
+                        status='stage'
+                        onClick={setStagesId}
+                        setStage={setStage}
+                        setStagesId={setStagesId}
+                        issueId={issueId}
+                        issueGroupId={issueGroupId}
+                        updateAppState={updateAppState}
+                    />
+                )}
                 <StatusBtn
                     id={stageId}
                     value={stage}
@@ -54,7 +79,17 @@ export const Issue = ({
                         setPrioritiesId("");
                     }}
                 />
-                {prioritiesId === issueId && <StatusSelector status='priority' onClick={setPrioritiesId} />}
+                {prioritiesId === issueId && (
+                    <StatusSelector
+                        status='priority'
+                        onClick={setPrioritiesId}
+                        setPriority={setPriority}
+                        setPrioritiesId={setPrioritiesId}
+                        issueId={issueId}
+                        issueGroupId={issueGroupId}
+                        updateAppState={updateAppState}
+                    />
+                )}
                 <StatusBtn
                     id={priorityId}
                     value={priority}
@@ -85,7 +120,7 @@ export const Issue = ({
 };
 
 Issue.propTypes = {
-    id: PropTypes.string,
+    issueId: PropTypes.string,
     description: PropTypes.string,
     completion: PropTypes.string,
     priority: PropTypes.string,
@@ -98,6 +133,15 @@ Issue.propTypes = {
     setIssueOptionsId: PropTypes.func,
     dateOptionsId: PropTypes.string,
     setDateOptionsId: PropTypes.func,
+    createIssue: PropTypes.func.isRequired,
+    deleteIssue: PropTypes.func.isRequired,
+    editIssue: PropTypes.func.isRequired,
+    setDate: PropTypes.func.isRequired,
+    setPriority: PropTypes.func.isRequired,
+    setStage: PropTypes.func.isRequired,
+    issueGroupId: PropTypes.string,
+    updateAppState: PropTypes.func,
+    options: PropTypes.array,
 };
 
 export default Issue;
