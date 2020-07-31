@@ -27,6 +27,11 @@ export const SidePanel = ({
         setProjectName(e.target.value);
     };
 
+    const sortProjectNames = (projectNames) => {
+        projectNames.sort();
+        return projectNames;
+    };
+
     return (
         <aside className='side-panel-container'>
             <div className='side-panel-heading-container'>
@@ -50,11 +55,18 @@ export const SidePanel = ({
             </div>
             <div className='project-list-container'>
                 {projectNames &&
-                    projectNames.map((key) => {
+                    sortProjectNames(projectNames).map((key) => {
                         const value = localStorage.getItem(key);
                         return key !== "currentData" ? (
                             <div key={value} className='project-link'>
-                                <p className='project-link-title'>{key}</p>
+                                <p
+                                    className='project-link-title'
+                                    onClick={() => {
+                                        loadProject(value);
+                                        updateAppState();
+                                    }}>
+                                    {key}
+                                </p>
                                 <i
                                     className='delete-project fas fa-times-circle'
                                     id={value}
