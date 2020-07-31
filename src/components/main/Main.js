@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 
 import IssueGroup from "../issue_group/IssueGroup";
 
@@ -6,22 +6,25 @@ import PropTypes from "prop-types";
 
 import "./main.css";
 
-const Main = ({ createGroup }) => {
-    const [currentData, setCurrentData] = useState(null);
-    const [deleteGroupId, setDeleteGroupId] = useState("");
-    const [addGroupId, setAddGroupId] = useState("");
-    const [groupName, setGroupName] = useState("");
-    const [prioritiesId, setPrioritiesId] = useState("");
-    const [stagesId, setStagesId] = useState("");
-    const [issueOptionsId, setIssueOptionsId] = useState("");
-    const [dateOptionsId, setDateOptionsId] = useState("");
-
-    useEffect(() => {
-        if (localStorage.getItem("currentData")) {
-            setCurrentData(JSON.parse(localStorage.getItem("currentData")));
-        }
-    }, []);
-
+const Main = ({
+    currentData,
+    deleteGroupId,
+    setDeleteGroupId,
+    addGroupId,
+    setAddGroupId,
+    groupName,
+    setGroupName,
+    prioritiesId,
+    setPrioritiesId,
+    stagesId,
+    setStagesId,
+    issueOptionsId,
+    setIssueOptionsId,
+    dateOptionsId,
+    setDateOptionsId,
+    updateAppState,
+    createGroup,
+}) => {
     const onChangeGroupName = (e) => {
         setGroupName(e.target.value);
     };
@@ -55,13 +58,14 @@ const Main = ({ createGroup }) => {
                                 setIssueOptionsId={setIssueOptionsId}
                                 dateOptionsId={dateOptionsId}
                                 setDateOptionsId={setDateOptionsId}
-                                onClick={() =>
+                                onClick={() => {
                                     createGroup({
                                         projectName: currentData.project_name,
                                         projectId: currentData.project_id,
                                         groupName,
-                                    })
-                                }
+                                    });
+                                    updateAppState();
+                                }}
                             />
                         );
                     })}
@@ -86,6 +90,22 @@ const Main = ({ createGroup }) => {
 };
 
 Main.propTypes = {
+    currentData: PropTypes.object,
+    deleteGroupId: PropTypes.string,
+    setDeleteGroupId: PropTypes.func,
+    addGroupId: PropTypes.string,
+    setAddGroupId: PropTypes.func,
+    groupName: PropTypes.string,
+    setGroupName: PropTypes.func,
+    prioritiesId: PropTypes.string,
+    setPrioritiesId: PropTypes.func,
+    stagesId: PropTypes.string,
+    setStagesId: PropTypes.func,
+    issueOptionsId: PropTypes.string,
+    setIssueOptionsId: PropTypes.func,
+    dateOptionsId: PropTypes.string,
+    setDateOptionsId: PropTypes.func,
+    updateAppState: PropTypes.func.isRequired,
     createGroup: PropTypes.func.isRequired,
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import SidePanel from "./components/side_panel/SidePanel";
 import Main from "./components/main/Main";
@@ -8,15 +8,38 @@ import "./App.css";
 // const { fetchProjectNames } = require("../public/assets/js/send");
 const electron = window.require("electron");
 
-const processProjectNames = (projectNames) => {
-    if (projectNames) {
-        for (let key in projectNames) {
-            localStorage.setItem(key, projectNames[key]);
-        }
-    }
-};
-
 const App = () => {
+    // Used to update the state of the application
+    const [, updateState] = useState();
+
+    // Side panel component state
+    const [projectNamesIds, setProjectNamesIds] = useState([]);
+    const [showDeleteProject, setDeleteProject] = useState(false);
+    const [projectLinkId, setProjectLinkId] = useState("");
+    const [showAddProject, setAddProject] = useState(false);
+    const [projectName, setProjectName] = useState("");
+
+    // Main component state
+    const [currentData, setCurrentData] = useState(null);
+    const [deleteGroupId, setDeleteGroupId] = useState("");
+    const [addGroupId, setAddGroupId] = useState("");
+    const [groupName, setGroupName] = useState("");
+    const [prioritiesId, setPrioritiesId] = useState("");
+    const [stagesId, setStagesId] = useState("");
+    const [issueOptionsId, setIssueOptionsId] = useState("");
+    const [dateOptionsId, setDateOptionsId] = useState("");
+
+    const updateAppState = useCallback(() => {
+        setTimeout(() => {
+            setProjectNamesIds(Object.keys(localStorage));
+            const data = localStorage.getItem("currentData");
+            if (data) {
+                setCurrentData(JSON.parse(data));
+            }
+            updateState({});
+        }, 1000);
+    }, []);
+
     useEffect(() => {
         document.title = "Bugr";
 
@@ -37,7 +60,25 @@ const App = () => {
         electron.ipcRenderer.on("group:created", (e, projectData) => {
             localStorage.setItem("currentData", projectData);
         });
+
+        if (localStorage.getItem("currentData")) {
+            setCurrentData(JSON.parse(localStorage.getItem("currentData")));
+        }
+
+        if (Object.keys(localStorage)) {
+            setProjectNamesIds(Object.keys(localStorage));
+        }
     }, []);
+
+    const processProjectNames = (projectNames) => {
+        if (projectNames) {
+            for (let key in projectNames) {
+                localStorage.setItem(key, projectNames[key]);
+            }
+        }
+    };
+
+    /* -------------------- Project Level Functions -------------------- */
 
     const loadProject = (projectId) => {
         if (projectId) {
@@ -55,6 +96,8 @@ const App = () => {
         }
     };
 
+    // Need to handle what happens to currentData object if
+    // it is deleted as part of a project deletion event
     const deleteProject = (projectId) => {
         if (projectId) {
             electron.ipcRenderer.send("project:delete", projectId);
@@ -62,6 +105,8 @@ const App = () => {
             console.log("Error, project ID must be supplied");
         }
     };
+
+    /* -------------------- Group Level Functions -------------------- */
 
     const createGroup = (values) => {
         if (values.groupName) {
@@ -71,14 +116,47 @@ const App = () => {
         }
     };
 
+    /* -------------------- Issue Level Functions -------------------- */
+
     return (
         <div className='App'>
             <SidePanel
+                projectNamesIds={projectNamesIds}
+                setProjectNamesIds={setProjectNamesIds}
+                showDeleteProject={showDeleteProject}
+                setDeleteProject={setDeleteProject}
+                projectLinkId={projectLinkId}
+                setProjectLinkId={setProjectLinkId}
+                showAddProject={showAddProject}
+                setAddProject={setAddProject}
+                projectName={projectName}
+                setProjectName={setProjectName}
+                updateAppState={updateAppState}
                 createProject={createProject}
                 deleteProject={deleteProject}
                 loadProject={loadProject}
             />
-            <Main createGroup={createGroup} loadProject={loadProject} />
+            <Main
+                currentData={currentData}
+                setCurrentData={setCurrentData}
+                deleteGroupId={deleteGroupId}
+                setDeleteGroupId={setDeleteGroupId}
+                addGroupId={addGroupId}
+                setAddGroupId={setAddGroupId}
+                groupName={groupName}
+                setGroupName={setGroupName}
+                prioritiesId={prioritiesId}
+                setPrioritiesId={setPrioritiesId}
+                stagesId={stagesId}
+                setStagesId={setStagesId}
+                issueOptionsId={issueOptionsId}
+                setIssueOptionsId={setIssueOptionsId}
+                dateOptionsId={dateOptionsId}
+                setDateOptionsId={setDateOptionsId}
+                updateAppState={updateAppState}
+                createGroup={createGroup}
+                loadProject={loadProject}
+            />
         </div>
     );
 };

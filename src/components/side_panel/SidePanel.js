@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React from "react";
 
 import DeletePopUp from "../delete/Delete";
 import AddPopUp from "../add/Add";
@@ -7,27 +7,21 @@ import PropTypes from "prop-types";
 
 import "./side_panel.css";
 
-export const SidePanel = ({ loadProject, createProject, deleteProject }) => {
-    const [, updateState] = useState();
-    const [projectNamesIds, setProjectNamesIds] = useState([]);
-    const [showDeleteProject, setDeleteProject] = useState(false);
-    const [projectLinkId, setProjectLinkId] = useState("");
-    const [showAddProject, setAddProject] = useState(false);
-    const [projectName, setProjectName] = useState("");
-
-    const forceUpdatePanel = useCallback(() => {
-        setTimeout(() => {
-            setProjectNamesIds(Object.keys(localStorage));
-            updateState({});
-        }, 1000);
-    }, []);
-
-    useEffect(() => {
-        if (Object.keys(localStorage)) {
-            setProjectNamesIds(Object.keys(localStorage));
-        }
-    }, []);
-
+export const SidePanel = ({
+    projectNamesIds,
+    showDeleteProject,
+    setDeleteProject,
+    projectLinkId,
+    setProjectLinkId,
+    showAddProject,
+    setAddProject,
+    projectName,
+    setProjectName,
+    updateAppState,
+    loadProject,
+    createProject,
+    deleteProject,
+}) => {
     const onChange = (e) => {
         setProjectName(e.target.value);
     };
@@ -48,7 +42,7 @@ export const SidePanel = ({ loadProject, createProject, deleteProject }) => {
                         revealFunc={setAddProject}
                         onClick={() => {
                             createProject(projectName);
-                            forceUpdatePanel();
+                            updateAppState();
                         }}
                     />
                 )}
@@ -87,7 +81,7 @@ export const SidePanel = ({ loadProject, createProject, deleteProject }) => {
                                             }
                                             localStorage.removeItem(key);
                                             deleteProject(projectLinkId);
-                                            forceUpdatePanel();
+                                            updateAppState();
                                         }}
                                     />
                                 )}
@@ -100,6 +94,15 @@ export const SidePanel = ({ loadProject, createProject, deleteProject }) => {
 };
 
 SidePanel.propTypes = {
+    projectNamesIds: PropTypes.array,
+    showDeleteProject: PropTypes.string,
+    setDeleteProject: PropTypes.func,
+    projectLinkId: PropTypes.string,
+    setProjectLinkId: PropTypes.func,
+    showAddProject: PropTypes.string,
+    setAddProject: PropTypes.func,
+    projectName: PropTypes.string,
+    setProjectName: PropTypes.func,
     loadProject: PropTypes.func.isRequired,
     createProject: PropTypes.func.isRequired,
     deleteProject: PropTypes.func.isRequired,
