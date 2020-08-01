@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+from datetime import datetime
 
 
 def find_file(data, path, project_id):
@@ -27,6 +28,8 @@ def main():
     new_description = sys.argv[4]
     file_path = find_file(app_data, app_data_path, project_id)
 
+    now = datetime.now()
+
     with open(file_path, 'r') as file:
         original_data = file.read()
         original_data_dict = json.loads(original_data)
@@ -37,6 +40,7 @@ def main():
                 for issue in group['issues']:
                     if issue['issue_id'] == issue_id:
                         issue['description'] = new_description
+                        issue['last_modified'] = str(now)
                         found = True
                         break
                 if found:
