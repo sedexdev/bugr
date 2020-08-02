@@ -44,11 +44,24 @@ const App = () => {
         document.title = "Bugr";
 
         electron.ipcRenderer.on("project:load_names", (e, projectNames) => {
-            processProjectNames(projectNames);
+            if (projectNames) {
+                let firstProjectId;
+                for (let key in projectNames) {
+                    localStorage.setItem(key, projectNames[key]);
+                    if (!firstProjectId) {
+                        firstProjectId = projectNames[key];
+                    }
+                }
+                if (!localStorage.getItem("currentData")) {
+                    loadProject(firstProjectId);
+                    updateAppState();
+                }
+            }
         });
 
         electron.ipcRenderer.on("project:loaded", (e, projectData) => {
             localStorage.setItem("currentData", JSON.parse(projectData));
+            updateAppState();
         });
 
         electron.ipcRenderer.on("project:created", (e, projectData) => {
@@ -62,23 +75,16 @@ const App = () => {
         });
 
         if (localStorage.getItem("currentData")) {
-            setCurrentData(JSON.parse(localStorage.getItem("currentData")));
+            const data = localStorage.getItem("currentData");
+            setCurrentData(JSON.parse(data));
         }
 
         if (Object.keys(localStorage)) {
             setProjectNames(Object.keys(localStorage));
         }
-    }, []);
+    }, [updateAppState]);
 
     /* -------------------- UI Functions -------------------- */
-
-    const processProjectNames = (projectNames) => {
-        if (projectNames) {
-            for (let key in projectNames) {
-                localStorage.setItem(key, projectNames[key]);
-            }
-        }
-    };
 
     const checkStorage = () => {
         const data = localStorage.getItem("currentData");
@@ -102,7 +108,7 @@ const App = () => {
         if (projectId) {
             electron.ipcRenderer.send("project:load", projectId);
         } else {
-            console.log("Error, project name must be supplied");
+            console.log("Error, project ID must be supplied");
         }
     };
 
@@ -224,7 +230,6 @@ const App = () => {
             <Main
                 projectNames={projectNames}
                 currentData={currentData}
-                setCurrentData={setCurrentData}
                 deleteGroupId={deleteGroupId}
                 setDeleteGroupId={setDeleteGroupId}
                 addGroupId={addGroupId}
