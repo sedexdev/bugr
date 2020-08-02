@@ -10,7 +10,7 @@ def find_file(data, path, project_id):
         object_path = f'{path}\\{obj}'
         if os.path.isdir(object_path):
             contents = os.listdir(object_path)
-            return find_file(contents, object_path)
+            return find_file(contents, object_path, project_id)
         else:
             with open(object_path, 'r+') as data_file:
                 json_data = data_file.read()
