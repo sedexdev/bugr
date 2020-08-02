@@ -53,53 +53,88 @@ const Main = ({
         <main className='main-application-container'>
             {currentData && projectNames.length ? (
                 <Fragment>
-                    <h1 className='main-project-title'>
-                        {currentData.project_name}
-                    </h1>
-                    {currentData.groups.map((issueGroup) => {
-                        return (
-                            <IssueGroup
-                                key={issueGroup.group_id}
-                                currentData={currentData}
-                                issueGroupId={issueGroup.group_id}
-                                setAddGroupId={setAddGroupId}
-                                currentAddGroupId={addGroupId}
-                                setDeleteGroupId={setDeleteGroupId}
-                                currentDeleteGroupId={deleteGroupId}
-                                onChange={onChangeGroupName}
-                                title={issueGroup.title}
-                                issues={issueGroup.issues}
-                                prioritiesId={prioritiesId}
-                                setPrioritiesId={setPrioritiesId}
-                                stagesId={stagesId}
-                                setStagesId={setStagesId}
-                                issueOptionsId={issueOptionsId}
-                                setIssueOptionsId={setIssueOptionsId}
-                                dateOptionsId={dateOptionsId}
-                                setDateOptionsId={setDateOptionsId}
-                                updateAppState={updateAppState}
-                                createGroup={() => {
-                                    createGroup({
-                                        projectName: currentData.project_name,
-                                        projectId: currentData.project_id,
-                                        groupName,
-                                    });
-                                    updateAppState();
-                                }}
-                                deleteGroup={deleteGroup}
-                                createIssue={createIssue}
-                                deleteIssue={deleteIssue}
-                                editIssue={editIssue}
-                                setDate={setDate}
-                                setPriority={setPriority}
-                                setStage={setStage}
-                                options={getOptions(
-                                    currentData,
-                                    issueGroup.group_id
-                                )}
+                    {currentData && currentData.groups.length ? (
+                        <Fragment>
+                            <h1 className='main-project-title'>
+                                {currentData.project_name}
+                            </h1>
+                            {currentData.groups.map((issueGroup) => {
+                                return (
+                                    <IssueGroup
+                                        key={issueGroup.group_id}
+                                        currentData={currentData}
+                                        issueGroupId={issueGroup.group_id}
+                                        setAddGroupId={setAddGroupId}
+                                        currentAddGroupId={addGroupId}
+                                        setDeleteGroupId={setDeleteGroupId}
+                                        currentDeleteGroupId={deleteGroupId}
+                                        onChange={onChangeGroupName}
+                                        title={issueGroup.title}
+                                        issues={issueGroup.issues}
+                                        prioritiesId={prioritiesId}
+                                        setPrioritiesId={setPrioritiesId}
+                                        stagesId={stagesId}
+                                        setStagesId={setStagesId}
+                                        issueOptionsId={issueOptionsId}
+                                        setIssueOptionsId={setIssueOptionsId}
+                                        dateOptionsId={dateOptionsId}
+                                        setDateOptionsId={setDateOptionsId}
+                                        updateAppState={updateAppState}
+                                        createGroup={() => {
+                                            createGroup({
+                                                projectName:
+                                                    currentData.project_name,
+                                                projectId:
+                                                    currentData.project_id,
+                                                groupName,
+                                            });
+                                            updateAppState();
+                                        }}
+                                        deleteGroup={deleteGroup}
+                                        createIssue={createIssue}
+                                        deleteIssue={deleteIssue}
+                                        editIssue={editIssue}
+                                        setDate={setDate}
+                                        setPriority={setPriority}
+                                        setStage={setStage}
+                                        options={getOptions(
+                                            currentData,
+                                            issueGroup.group_id
+                                        )}
+                                    />
+                                );
+                            })}
+                        </Fragment>
+                    ) : (
+                        <div className='no-groups-message'>
+                            <img
+                                className='bugr-icon-main'
+                                src={bugrIcon}
+                                alt='Loading'
                             />
-                        );
-                    })}
+                            <p>
+                                This project doesn't appear to have any groups
+                                associated with it.
+                            </p>
+                            <p>
+                                Create a{" "}
+                                <span
+                                    className='new-group-link'
+                                    onClick={() => {
+                                        createGroup({
+                                            projectName:
+                                                currentData.project_name,
+                                            projectId: currentData.project_id,
+                                            groupName: "New Group",
+                                        });
+                                        updateAppState();
+                                    }}>
+                                    new group
+                                </span>{" "}
+                                for this project?
+                            </p>
+                        </div>
+                    )}
                 </Fragment>
             ) : (
                 <div className='welcome-message'>
