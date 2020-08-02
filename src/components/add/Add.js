@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import PropTypes from "prop-types";
 
@@ -17,6 +17,12 @@ const Add = ({
         ? `add-object-container ${extraClasses}`
         : "add-object-container";
 
+    const inputRef = useRef();
+
+    useEffect(() => {
+        inputRef.current.focus();
+    });
+
     return (
         <div className={addClasses}>
             <input
@@ -28,6 +34,7 @@ const Add = ({
                 onChange={(e) => onChange(e)}
                 onFocus={(e) => (e.target.placeholder = "")}
                 onBlur={(e) => (e.target.placeholder = placeholder)}
+                ref={inputRef}
             />
             <button className='add-project-btn'>
                 <i
