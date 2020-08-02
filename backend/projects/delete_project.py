@@ -3,26 +3,21 @@ import os
 import json
 
 
-def read_files(data, path, project_id):
-    for obj in data:
-        object_path = f'{path}\\{obj}'
-        if os.path.isdir(object_path):
-            contents = os.listdir(object_path)
-            return read_files(contents, object_path, project_id)
-        else:
-            with open(object_path, 'r+') as file:
-                json_data = file.read()
+def read_files(path, project_id):
+    for (root, dirs, files) in os.walk(path, topdown=False):
+        for file in files:
+            with open(f'{root}/{file}', 'r') as project_file:
+                json_data = project_file.read()
                 data_dict = json.loads(json_data)
                 if data_dict['project_id'] == project_id:
-                    return object_path
+                    return f'{root}/{file}'
 
 
 def main():
     username = os.getlogin()
     app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
-    app_data = os.listdir(app_data_path)
     project_id = sys.argv[1]
-    file_to_delete = read_files(app_data, app_data_path, project_id)
+    file_to_delete = read_files(app_data_path, project_id)
 
     if file_to_delete:
         try:
