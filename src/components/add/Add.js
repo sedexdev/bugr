@@ -32,7 +32,6 @@ const Add = ({
             <button className='add-project-btn'>
                 <i
                     className='create-object fas fa-check-circle'
-                    title='Create project'
                     onClick={() => {
                         onClick();
                         revealFunc("");
