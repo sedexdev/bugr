@@ -32,9 +32,6 @@ def main():
 
     username = os.getlogin()
     json_data = json.dumps(project_data)
-    if not os.path.exists(f'C:\\Users\\{username}\\AppData\\Local\\bugr'):
-        os.mkdir(f'C:\\Users\\{username}\\AppData\\Local\\bugr')
-
     project_id = project_data['project_id']
     path = f"C:\\Users\\{username}\\AppData\\Local\\bugr\\{project_name}-{project_id}.json"
 

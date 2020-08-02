@@ -17,6 +17,10 @@ def read_files(data, path, projects_list):
 
 def main():
     username = os.getlogin()
+
+    if not os.path.exists(f'C:\\Users\\{username}\\AppData\\Local\\bugr'):
+        os.mkdir(f'C:\\Users\\{username}\\AppData\\Local\\bugr')
+
     app_data_path = f'C:\\Users\\{username}\\AppData\\Local\\bugr'
     app_data = os.listdir(app_data_path)
     project_names = {}
