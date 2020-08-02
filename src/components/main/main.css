@@ -12,12 +12,14 @@
     padding: 60px 0 30px 0;
 }
 
-.welcome-message {
+.welcome-message,
+.no-groups-message {
     text-align: center;
     padding: 150px 0;
 }
 
-.welcome-message p {
+.welcome-message p,
+.no-groups-message p {
     display: block;
     font-size: 1.2rem;
     padding: 20px 200px;
@@ -29,6 +31,15 @@
     display: flex;
     justify-content: center;
     margin: auto;
+}
+
+.new-group-link {
+    color: orangered;
+    cursor: pointer;
+}
+
+.new-group-link:hover {
+    color: red;
 }
 
 @media (max-width: 780px) {
