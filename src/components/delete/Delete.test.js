@@ -5,7 +5,7 @@ import { mount } from "enzyme";
 
 import Delete from "./Delete";
 
-describe("SidePanel component", () => {
+describe("Delete component", () => {
     test("Renders without crashing", () => {
         const div = document.createElement("div");
         ReactDOM.render(<Delete />, div);
