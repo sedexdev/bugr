@@ -9,7 +9,7 @@ def read_files(data, path, projects_list):
             contents = os.listdir(object_path)
             read_files(contents, object_path, projects_list)
         else:
-            with open(object_path, 'r+') as file:
+            with open(object_path, 'r') as file:
                 json_data = file.read()
                 data_dict = json.loads(json_data)
                 projects_list[data_dict['project_name']] = data_dict['project_id']
