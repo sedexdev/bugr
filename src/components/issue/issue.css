@@ -6,7 +6,7 @@
 
 .issue-description-container {
     display: flex;
-    width: 60%;
+    width: 100%;
 }
 
 .issue-description,
@@ -56,15 +56,14 @@
     border-radius: 10px;
     margin: 0;
     padding: 5px 10px 10px 10px;
-    z-index: 2;
 }
 
 .date-options-container {
     left: -80px;
+    padding: 5px 15px !important;
 }
 
-.issue-options-list,
-.date-options-list {
+.issue-options-list {
     margin: 0;
     padding: 0;
 }
@@ -72,6 +71,7 @@
 .issue-option-list-element,
 .date-option-list-element {
     list-style: none;
+    padding: 5px 0;
     cursor: pointer;
 }
 
@@ -109,7 +109,7 @@
     
     .date-container {
         display: inline-flex;
-        width: 35.5%;
+        width: 35.8%;
     }
 }
 
