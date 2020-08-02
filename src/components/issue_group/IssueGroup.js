@@ -10,11 +10,14 @@ import "./issue_group.css";
 
 export const IssueGroup = ({
     issueGroupId,
+    onChangeGroupName,
     currentData,
     setAddGroupId,
     currentAddGroupId,
     setDeleteGroupId,
     currentDeleteGroupId,
+    setEditGroupId,
+    currentEditGroupId,
     onChange,
     title,
     issues,
@@ -26,9 +29,14 @@ export const IssueGroup = ({
     setIssueOptionsId,
     dateOptionsId,
     setDateOptionsId,
+    issueDescription,
+    setIssueDescription,
+    issueCompletion,
+    setIssueCompletion,
     updateAppState,
     createGroup,
     deleteGroup,
+    editGroupName,
     createIssue,
     deleteIssue,
     editIssue,
@@ -44,16 +52,26 @@ export const IssueGroup = ({
                 <div className='group-options-container'>
                     <i
                         className='add-group fas fa-plus-circle'
-                        title='Add Group'
+                        title='Add group'
                         onClick={() => {
                             setAddGroupId(issueGroupId);
                             setDeleteGroupId("");
+                            setEditGroupId("");
                         }}></i>
                     <i
                         className='delete-group fas fa-times-circle'
                         title='Delete group'
                         onClick={() => {
                             setDeleteGroupId(issueGroupId);
+                            setAddGroupId("");
+                            setEditGroupId("");
+                        }}></i>
+                    <i
+                        className='edit-group fas fa-pencil-alt'
+                        title='Edit group name'
+                        onClick={() => {
+                            setEditGroupId(issueGroupId);
+                            setDeleteGroupId("");
                             setAddGroupId("");
                         }}></i>
                 </div>
@@ -82,6 +100,17 @@ export const IssueGroup = ({
                         }}
                     />
                 )}
+                {currentEditGroupId === issueGroupId && (
+                    <AddPopUp
+                        extraClasses='group-add-position'
+                        placeholder='New group name...'
+                        name='groupName'
+                        onChange={onChangeGroupName}
+                        revealFunc={setEditGroupId}
+                        onClick={editGroupName}
+                        updateAppState={updateAppState}
+                    />
+                )}
             </div>
             <div className='issue-box'>
                 {issues &&
@@ -89,6 +118,7 @@ export const IssueGroup = ({
                         return (
                             <Issue
                                 key={issue.issue_id}
+                                currentData={currentData}
                                 issueId={issue.issue_id}
                                 description={issue.description}
                                 completion={issue.finish_by}
@@ -102,6 +132,10 @@ export const IssueGroup = ({
                                 setIssueOptionsId={setIssueOptionsId}
                                 dateOptionsId={dateOptionsId}
                                 setDateOptionsId={setDateOptionsId}
+                                issueDescription={issueDescription}
+                                setIssueDescription={setIssueDescription}
+                                issueCompletion={issueCompletion}
+                                setIssueCompletion={setIssueCompletion}
                                 createIssue={createIssue}
                                 deleteIssue={deleteIssue}
                                 editIssue={editIssue}
@@ -121,11 +155,14 @@ export const IssueGroup = ({
 
 IssueGroup.propTypes = {
     issueGroupId: PropTypes.string,
+    onChangeGroupName: PropTypes.func,
     currentData: PropTypes.object,
     setAddGroupId: PropTypes.func,
     currentAddGroupId: PropTypes.string,
     setDeleteGroupId: PropTypes.func,
     currentDeleteGroupId: PropTypes.string,
+    setEditGroupId: PropTypes.func,
+    currentEditGroupId: PropTypes.string,
     onChange: PropTypes.func,
     title: PropTypes.string,
     issues: PropTypes.array,
@@ -138,9 +175,14 @@ IssueGroup.propTypes = {
     setIssueOptionsId: PropTypes.func,
     dateOptionsId: PropTypes.string,
     setDateOptionsId: PropTypes.func,
+    issueDescription: PropTypes.string,
+    setIssueDescription: PropTypes.func,
+    issueCompletion: PropTypes.string,
+    setIssueCompletion: PropTypes.func,
     updateAppState: PropTypes.func,
     createGroup: PropTypes.func.isRequired,
     deleteGroup: PropTypes.func.isRequired,
+    editGroupName: PropTypes.func.isRequired,
     createIssue: PropTypes.func.isRequired,
     deleteIssue: PropTypes.func.isRequired,
     editIssue: PropTypes.func.isRequired,

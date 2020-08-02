@@ -23,7 +23,10 @@ const App = () => {
     const [currentData, setCurrentData] = useState(null);
     const [deleteGroupId, setDeleteGroupId] = useState("");
     const [addGroupId, setAddGroupId] = useState("");
+    const [editGroupId, setEditGroupId] = useState("");
     const [groupName, setGroupName] = useState("");
+    const [issueDescription, setIssueDescription] = useState("");
+    const [issueCompletion, setIssueCompletion] = useState("");
     const [prioritiesId, setPrioritiesId] = useState("");
     const [stagesId, setStagesId] = useState("");
     const [issueOptionsId, setIssueOptionsId] = useState("");
@@ -37,7 +40,7 @@ const App = () => {
                 setCurrentData(JSON.parse(data));
             }
             updateState({});
-        }, 200);
+        }, 500);
     }, []);
 
     useEffect(() => {
@@ -146,6 +149,16 @@ const App = () => {
         }
     };
 
+    const editGroupName = (values) => {
+        if (values) {
+            electron.ipcRenderer.send("group:edit", values);
+        } else {
+            console.log(
+                "Error, project and group IDs and a group name must be supplied"
+            );
+        }
+    };
+
     /* -------------------- Issue Level Functions -------------------- */
 
     const createIssue = (values) => {
@@ -234,8 +247,14 @@ const App = () => {
                 setDeleteGroupId={setDeleteGroupId}
                 addGroupId={addGroupId}
                 setAddGroupId={setAddGroupId}
+                editGroupId={editGroupId}
+                setEditGroupId={setEditGroupId}
                 groupName={groupName}
                 setGroupName={setGroupName}
+                issueDescription={issueDescription}
+                setIssueDescription={setIssueDescription}
+                issueCompletion={issueCompletion}
+                setIssueCompletion={setIssueCompletion}
                 prioritiesId={prioritiesId}
                 setPrioritiesId={setPrioritiesId}
                 stagesId={stagesId}
@@ -248,6 +267,7 @@ const App = () => {
                 loadProject={loadProject}
                 createGroup={createGroup}
                 deleteGroup={deleteGroup}
+                editGroupName={editGroupName}
                 createIssue={createIssue}
                 deleteIssue={deleteIssue}
                 editIssue={editIssue}

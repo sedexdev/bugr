@@ -10,6 +10,7 @@ const {
     deleteProject,
     createGroup,
     deleteGroup,
+    editGroupName,
     createIssue,
     deleteIssue,
     editIssue,
@@ -109,6 +110,17 @@ ipcMain.on("group:delete", (e, values) => {
     deleteGroup(values.projectId, values.groupId, (data) => {
         mainWindow.webContents.send("project:edited", data);
     });
+});
+
+ipcMain.on("group:edit", (e, values) => {
+    editGroupName(
+        values.projectId,
+        values.groupId,
+        values.groupName,
+        (data) => {
+            mainWindow.webContents.send("project:edited", data);
+        }
+    );
 });
 
 /* ----------------- Issue Level -----------------  */

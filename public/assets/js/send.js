@@ -114,6 +114,17 @@ const deleteGroup = (projectId, groupId, callback) => {
     });
 };
 
+const editGroupName = (projectId, groupId, groupName, callback) => {
+    groupOptions.args = [projectId, groupId, groupName];
+    PythonShell.run("edit_group_name.py", groupOptions, function (
+        err,
+        results
+    ) {
+        if (err) throw err;
+        callback(results);
+    });
+};
+
 /*
 ===================================================
               Issue Level Functions
@@ -176,6 +187,7 @@ module.exports = {
     deleteProject,
     createGroup,
     deleteGroup,
+    editGroupName,
     createIssue,
     deleteIssue,
     editIssue,

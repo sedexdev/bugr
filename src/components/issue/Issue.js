@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import StatusBtn from "../btns/StatusBtn";
 import StatusSelector from "../status_selector/StatusSelector";
@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import "./issue.css";
 
 export const Issue = ({
+    currentData,
     issueId,
     description,
     completion,
@@ -22,6 +23,10 @@ export const Issue = ({
     setIssueOptionsId,
     dateOptionsId,
     setDateOptionsId,
+    issueDescription,
+    setIssueDescription,
+    issueCompletion,
+    setIssueCompletion,
     createIssue,
     deleteIssue,
     editIssue,
@@ -35,10 +40,39 @@ export const Issue = ({
     const stageId = `stage-${issueId}`;
     const priorityId = `priority-${issueId}`;
 
+    const inputRef = useRef();
+    const inputDateRef = useRef();
+
+    const editIssueValue = () => {
+        inputRef.current.readOnly = false;
+        inputRef.current.focus();
+    };
+
+    const editDateValue = () => {
+        inputDateRef.current.readOnly = false;
+        inputDateRef.current.focus();
+    };
+
     return (
         <div className='issue-container'>
             <div className='issue-description-container'>
-                <div className='issue-description'>{description}</div>
+                <input
+                    className='issue-description'
+                    defaultValue={description}
+                    ref={inputRef}
+                    onChange={(e) => setIssueDescription(e.target.value)}
+                    onBlur={(e) => {
+                        e.target.readOnly = true;
+                        editIssue({
+                            projectId: currentData.project_id,
+                            groupId: issueGroupId,
+                            issueId,
+                            description: issueDescription,
+                        });
+                        updateAppState();
+                    }}
+                    readOnly
+                />
                 <i
                     className='issue-menu fas fa-ellipsis-v'
                     title='Options'
@@ -52,9 +86,12 @@ export const Issue = ({
                             issueId={issueId}
                             createIssue={createIssue}
                             deleteIssue={deleteIssue}
+                            editIssueValue={editIssueValue}
                             setIssueOptionsId={setIssueOptionsId}
+                            setDateOptionsId={setDateOptionsId}
                             updateAppState={updateAppState}
                             options={options}
+                            menu={"Issue"}
                         />
                     )}
                 </div>
@@ -100,7 +137,23 @@ export const Issue = ({
                 />
             </div>
             <div className='date-container'>
-                <div className='completion-date'>{completion}</div>
+                <input
+                    className='completion-date'
+                    defaultValue={completion}
+                    ref={inputDateRef}
+                    onChange={(e) => setIssueCompletion(e.target.value)}
+                    onBlur={(e) => {
+                        e.target.readOnly = true;
+                        setDate({
+                            projectId: currentData.project_id,
+                            groupId: issueGroupId,
+                            issueId,
+                            date: issueCompletion,
+                        });
+                        updateAppState();
+                    }}
+                    readOnly
+                />
                 <i
                     className='issue-menu fas fa-ellipsis-v'
                     title='Date options'
@@ -110,7 +163,16 @@ export const Issue = ({
                         <IssueOptions
                             containerName='date-options-container'
                             displayOptions={setDateOptionsId}
-                            options={["Edit", "Delete"]}
+                            issueGroupId={issueGroupId}
+                            issueId={issueId}
+                            createIssue={createIssue}
+                            deleteIssue={deleteIssue}
+                            editDateValue={editDateValue}
+                            setIssueOptionsId={setIssueOptionsId}
+                            setDateOptionsId={setDateOptionsId}
+                            updateAppState={updateAppState}
+                            options={["Edit"]}
+                            menu={"Date"}
                         />
                     )}
                 </div>
@@ -120,6 +182,7 @@ export const Issue = ({
 };
 
 Issue.propTypes = {
+    currentData: PropTypes.object,
     issueId: PropTypes.string,
     description: PropTypes.string,
     completion: PropTypes.string,
@@ -133,6 +196,10 @@ Issue.propTypes = {
     setIssueOptionsId: PropTypes.func,
     dateOptionsId: PropTypes.string,
     setDateOptionsId: PropTypes.func,
+    issueDescription: PropTypes.string,
+    setIssueDescription: PropTypes.func,
+    issueCompletion: PropTypes.string,
+    setIssueCompletion: PropTypes.func,
     createIssue: PropTypes.func.isRequired,
     deleteIssue: PropTypes.func.isRequired,
     editIssue: PropTypes.func.isRequired,

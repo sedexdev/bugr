@@ -9,9 +9,13 @@ export const IssueOptions = ({
     issueId,
     createIssue,
     deleteIssue,
+    editIssueValue,
+    editDateValue,
     setIssueOptionsId,
+    setDateOptionsId,
     updateAppState,
     options,
+    menu,
 }) => {
     let key = 0;
     return (
@@ -44,10 +48,16 @@ export const IssueOptions = ({
                                             issueId,
                                         });
                                         break;
+                                    case "Edit":
+                                        menu === "Issue"
+                                            ? editIssueValue()
+                                            : editDateValue();
+                                        break;
                                     default:
                                         return null;
                                 }
                                 setIssueOptionsId("");
+                                setDateOptionsId("");
                                 updateAppState();
                             }}>
                             {option}
@@ -66,9 +76,13 @@ IssueOptions.propTypes = {
     issueId: PropTypes.string,
     createIssue: PropTypes.func,
     deleteIssue: PropTypes.func,
+    editIssueValue: PropTypes.func,
+    editDateValue: PropTypes.func,
     setIssueOptionsId: PropTypes.func,
+    setDateOptionsId: PropTypes.func,
     updateAppState: PropTypes.func,
     options: PropTypes.array,
+    menu: PropTypes.string,
 };
 
 export default IssueOptions;

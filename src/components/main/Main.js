@@ -13,8 +13,14 @@ const Main = ({
     setDeleteGroupId,
     addGroupId,
     setAddGroupId,
+    editGroupId,
+    setEditGroupId,
     groupName,
     setGroupName,
+    issueDescription,
+    setIssueDescription,
+    issueCompletion,
+    setIssueCompletion,
     prioritiesId,
     setPrioritiesId,
     stagesId,
@@ -26,6 +32,7 @@ const Main = ({
     updateAppState,
     createGroup,
     deleteGroup,
+    editGroupName,
     createIssue,
     deleteIssue,
     editIssue,
@@ -63,12 +70,21 @@ const Main = ({
                                     <IssueGroup
                                         key={issueGroup.group_id}
                                         currentData={currentData}
+                                        onChangeGroupName={onChangeGroupName}
                                         issueGroupId={issueGroup.group_id}
                                         setAddGroupId={setAddGroupId}
                                         currentAddGroupId={addGroupId}
                                         setDeleteGroupId={setDeleteGroupId}
                                         currentDeleteGroupId={deleteGroupId}
+                                        setEditGroupId={setEditGroupId}
+                                        currentEditGroupId={editGroupId}
                                         onChange={onChangeGroupName}
+                                        issueDescription={issueDescription}
+                                        setIssueDescription={
+                                            setIssueDescription
+                                        }
+                                        issueCompletion={issueCompletion}
+                                        setIssueCompletion={setIssueCompletion}
                                         title={issueGroup.title}
                                         issues={issueGroup.issues}
                                         prioritiesId={prioritiesId}
@@ -91,6 +107,15 @@ const Main = ({
                                             updateAppState();
                                         }}
                                         deleteGroup={deleteGroup}
+                                        editGroupName={() => {
+                                            editGroupName({
+                                                projectId:
+                                                    currentData.project_id,
+                                                groupId: editGroupId,
+                                                groupName,
+                                            });
+                                            updateAppState();
+                                        }}
                                         createIssue={createIssue}
                                         deleteIssue={deleteIssue}
                                         editIssue={editIssue}
@@ -162,8 +187,14 @@ Main.propTypes = {
     setDeleteGroupId: PropTypes.func,
     addGroupId: PropTypes.string,
     setAddGroupId: PropTypes.func,
+    editGroupId: PropTypes.string,
+    setEditGroupId: PropTypes.func,
     groupName: PropTypes.string,
     setGroupName: PropTypes.func,
+    issueDescription: PropTypes.string,
+    setIssueDescription: PropTypes.func,
+    issueCompletion: PropTypes.string,
+    setIssueCompletion: PropTypes.func,
     prioritiesId: PropTypes.string,
     setPrioritiesId: PropTypes.func,
     stagesId: PropTypes.string,
@@ -175,6 +206,7 @@ Main.propTypes = {
     updateAppState: PropTypes.func,
     createGroup: PropTypes.func,
     deleteGroup: PropTypes.func,
+    editGroupName: PropTypes.func,
     createIssue: PropTypes.func,
     deleteIssue: PropTypes.func,
     editIssue: PropTypes.func,
