@@ -16,6 +16,7 @@
 
 .issue-group-title {
     margin: 0; 
+    outline: none;
 }
 
 .group-options-container {
@@ -31,7 +32,13 @@
     cursor: pointer;
 }
 
-.add-group:hover {
+.edit-group {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.add-group:hover,
+.edit-group:hover {
     transform: scale(1.1);
 }
 
