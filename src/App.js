@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 import SidePanel from "./components/side_panel/SidePanel";
 import Main from "./components/main/Main";
 
 import "./App.css";
 
-// const { fetchProjectNames } = require("../public/assets/js/send");
 const electron = window.require("electron");
 
 const App = () => {
@@ -31,6 +30,26 @@ const App = () => {
     const [stagesId, setStagesId] = useState("");
     const [issueOptionsId, setIssueOptionsId] = useState("");
     const [dateOptionsId, setDateOptionsId] = useState("");
+    const [statusData, setStatusData] = useState({});
+
+    // Set ref for countStatus function defined inside useEffect
+    let countStatusRef = useRef();
+
+    /* -------------------- UI Functions -------------------- */
+
+    const checkStorage = () => {
+        const data = localStorage.getItem("currentData");
+        if (!data) {
+            let projectId;
+            const keys = Object.keys(localStorage);
+            for (let key of keys) {
+                projectId = localStorage.getItem(key);
+            }
+            if (projectId) {
+                loadProject(projectId);
+            }
+        }
+    };
 
     const updateAppState = useCallback(() => {
         setTimeout(() => {
@@ -38,12 +57,91 @@ const App = () => {
             const data = localStorage.getItem("currentData");
             if (data) {
                 setCurrentData(JSON.parse(data));
+                setStatusData(
+                    countStatusRef.current(JSON.stringify(data)),
+                    true
+                );
             }
             updateState({});
         }, 500);
     }, []);
 
+    const sortStats = (stats) => {
+        const sorted = Object.keys(stats)
+            .sort()
+            .reduce((acc, key) => {
+                acc[key] = stats[key];
+                return acc;
+            }, {});
+        return sorted;
+    };
+
+    const createStatusObjects = (data, fromStorage) => {
+        const priorityStats = {};
+        const stageStats = {};
+        const parsedData = fromStorage
+            ? JSON.parse(data)
+            : JSON.parse(JSON.parse(data));
+        for (let group of parsedData.groups) {
+            for (let issue of group.issues) {
+                !priorityStats[issue.priority]
+                    ? (priorityStats[issue.priority] = 1)
+                    : priorityStats[issue.priority]++;
+                !stageStats[issue.stage]
+                    ? (stageStats[issue.stage] = 1)
+                    : stageStats[issue.stage]++;
+            }
+        }
+        return {
+            priority: sortStats(priorityStats),
+            stage: sortStats(stageStats),
+        };
+    };
+
+    const calculateTotalStats = (stats) => {
+        let total = 0;
+        for (let key in stats) {
+            total += stats[key];
+        }
+        return total;
+    };
+
+    const calculatePercentages = (stats, total) => {
+        const percentages = [];
+        for (let key in stats) {
+            const percentage = parseFloat((stats[key] / total) * 100).toFixed(
+                2
+            );
+            percentages.push([key, `${percentage}%`]);
+        }
+        return percentages;
+    };
+
     useEffect(() => {
+        const countStatus = (data, fromStorage) => {
+            // Create objects containing the total numbers of priorities and stages
+            const statData = createStatusObjects(data, fromStorage);
+
+            // Convert them to arrays of percentages
+            const priorityTotal = calculateTotalStats(statData.priority);
+            const stageTotal = calculateTotalStats(statData.stage);
+            const priorityPercentages = calculatePercentages(
+                statData.priority,
+                priorityTotal
+            );
+            const stagesPercentages = calculatePercentages(
+                statData.stage,
+                stageTotal
+            );
+
+            return {
+                priorities: priorityPercentages,
+                stages: stagesPercentages,
+            };
+        };
+
+        countStatusRef.current = countStatus;
+
         document.title = "Bugr";
 
         electron.ipcRenderer.on("project:load_names", (e, projectNames) => {
@@ -55,14 +153,18 @@ const App = () => {
                         firstProjectId = projectNames[key];
                     }
                 }
-                if (!localStorage.getItem("currentData")) {
+                const currentData = localStorage.getItem("currentData");
+                if (currentData) {
+                    countStatus(currentData, true);
+                } else {
                     loadProject(firstProjectId);
-                    updateAppState();
                 }
+                updateAppState();
             }
         });
 
         electron.ipcRenderer.on("project:loaded", (e, projectData) => {
+            setStatusData(countStatus(projectData));
             localStorage.setItem("currentData", JSON.parse(projectData));
             updateAppState();
         });
@@ -85,25 +187,7 @@ const App = () => {
         if (Object.keys(localStorage)) {
             setProjectNames(Object.keys(localStorage));
         }
-    }, [updateAppState]);
-
-    /* -------------------- UI Functions -------------------- */
-
-    const checkStorage = () => {
-        const data = localStorage.getItem("currentData");
-        if (!data) {
-            let projectId;
-            const keys = Object.keys(localStorage);
-            for (let key of keys) {
-                projectId = localStorage.getItem(key);
-            }
-            if (projectId) {
-                loadProject(projectId);
-            }
-            return true;
-        }
-        return true;
-    };
+    }, [updateAppState, countStatusRef]);
 
     /* -------------------- Project Level Functions -------------------- */
 
@@ -239,6 +323,7 @@ const App = () => {
                 createProject={createProject}
                 deleteProject={deleteProject}
                 loadProject={loadProject}
+                statusData={statusData}
             />
             <Main
                 projectNames={projectNames}
