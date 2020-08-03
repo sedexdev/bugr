@@ -2,6 +2,7 @@ import React from "react";
 
 import DeletePopUp from "../delete/Delete";
 import AddPopUp from "../add/Add";
+import Stats from "./Stats";
 
 import PropTypes from "prop-types";
 
@@ -22,6 +23,7 @@ export const SidePanel = ({
     loadProject,
     createProject,
     deleteProject,
+    statusData,
 }) => {
     const onChange = (e) => {
         setProjectName(e.target.value);
@@ -34,7 +36,7 @@ export const SidePanel = ({
 
     return (
         <aside className='side-panel-container'>
-            <div className='side-panel-heading-container'>
+            <section className='side-panel-heading-container'>
                 <h1 className='panel-heading'>Project Panel</h1>
                 <i
                     className='add-project fas fa-plus-circle'
@@ -52,8 +54,8 @@ export const SidePanel = ({
                         }}
                     />
                 )}
-            </div>
-            <div className='project-list-container'>
+            </section>
+            <section className='project-list-container'>
                 {projectNames &&
                     sortProjectNames(projectNames).map((key) => {
                         const value = localStorage.getItem(key);
@@ -67,44 +69,55 @@ export const SidePanel = ({
                                     }}>
                                     {key}
                                 </p>
-                                <i
-                                    className='delete-project fas fa-times-circle'
-                                    id={value}
-                                    title='Delete project'
-                                    onClick={() => {
-                                        setDeleteProject("display");
-                                        setProjectLinkId(value);
-                                    }}></i>
-                                {value === projectLinkId && showDeleteProject && (
-                                    <DeletePopUp
-                                        title={key}
-                                        revealFunc={setDeleteProject}
+                                <div></div>
+                                <div className='delete-project-button'>
+                                    <i
+                                        className='delete-project fas fa-times-circle'
+                                        id={value}
+                                        title='Delete project'
                                         onClick={() => {
-                                            const currentData = JSON.parse(
-                                                localStorage.getItem(
-                                                    "currentData"
-                                                )
-                                            );
-                                            if (
-                                                currentData.project_name === key
-                                            ) {
-                                                localStorage.removeItem(
-                                                    "currentData"
-                                                );
-                                            }
-                                            localStorage.removeItem(key);
-                                            deleteProject(projectLinkId);
-                                            const checked = checkStorage();
-                                            if (checked) {
-                                                updateAppState();
-                                            }
-                                        }}
-                                    />
-                                )}
+                                            setDeleteProject("display");
+                                            setProjectLinkId(value);
+                                        }}></i>
+                                    {value === projectLinkId &&
+                                        showDeleteProject && (
+                                            <DeletePopUp
+                                                title={key}
+                                                revealFunc={setDeleteProject}
+                                                onClick={() => {
+                                                    const currentData = JSON.parse(
+                                                        localStorage.getItem(
+                                                            "currentData"
+                                                        )
+                                                    );
+                                                    if (
+                                                        currentData.project_name ===
+                                                        key
+                                                    ) {
+                                                        localStorage.removeItem(
+                                                            "currentData"
+                                                        );
+                                                    }
+                                                    localStorage.removeItem(
+                                                        key
+                                                    );
+                                                    deleteProject(
+                                                        projectLinkId
+                                                    );
+                                                    checkStorage();
+                                                    updateAppState();
+                                                }}
+                                            />
+                                        )}
+                                </div>
                             </div>
                         ) : null;
                     })}
-            </div>
+            </section>
+            <section className='project-stats-container'>
+                <Stats title='Stages' stats={statusData.stages} />
+                <Stats title='Priorities' stats={statusData.priorities} />
+            </section>
         </aside>
     );
 };
@@ -123,6 +136,7 @@ SidePanel.propTypes = {
     loadProject: PropTypes.func.isRequired,
     createProject: PropTypes.func.isRequired,
     deleteProject: PropTypes.func.isRequired,
+    statusData: PropTypes.object,
 };
 
 export default SidePanel;
