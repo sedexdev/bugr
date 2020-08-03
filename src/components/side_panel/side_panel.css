@@ -4,7 +4,6 @@
     height: 100vh;
     background-color: darkslategrey;
     border-right: 1px solid #222;
-    opacity: 0.9;
 }
 
 .side-panel-heading-container {
@@ -30,19 +29,27 @@
 }
 
 .project-list-container {
-    margin-top: 30px;
+    height: 300px;
+    width: 450px;
+    overflow-y: scroll;
+    padding: 30px 0;
+}
+
+.project-list-container::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
 }
 
 .project-link {
-    position: relative;
-    display: flex;
-    margin-left: 20px;
-    padding: 0 10px;
+    display: flex; 
+    margin-left: 10px;
+    padding-right: 10px;
 }
 
 .project-link-title {
     text-decoration: none;
     color: #fff;
+    width: 200px;
     font-size: 1.8rem;
     margin: 10px 0;
     cursor: pointer;
@@ -52,16 +59,46 @@
     color: #222;
 }
 
+.delete-project-button {
+    position: relative;
+    display: flex;
+    min-width: fit-content;
+}
+
 .delete-project {
-    color: #fff;
-    font-size: 0.8rem;
+    color: #fff;    
     margin-left: 10px;
-    padding-top: 10px;
+    padding-top: 20px;
     cursor: pointer;
 }
 
 .delete-project:hover {
     transform: scale(1.1);
+}
+
+.project-stats-container {
+    display: block;
+    border-top: 1px solid #fff;
+}
+
+.graph-title {
+    color: #fff;
+    text-align: center;
+}
+
+.stats-graph {
+    display: flex;
+    justify-content: space-evenly;
+    height: 100px;
+    width: 80%;
+    border-top: 1px solid #fff;
+    margin: 20px auto;
+}
+
+.graph-column {
+    width: 30px;
+    transition: height ease-out 0.2s;
+    margin: 0 !important;
 }
 
 @media (max-width: 780px) {

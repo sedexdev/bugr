@@ -1,22 +1,18 @@
 .delete-project-container {
-    position: relative;
-    left: 10px;
-    top: 0;
+    position: absolute;
+    left: 45px;
+    top: 12px;
     display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 50px;
     border: 1px solid #222;
     background-color: #fff;
     height: 30px;
-    min-width: fit-content;
+    width: 175px;
     padding: 0 5px;
-    z-index: 1;
 }
 
 .delete-project-msg {
     color: #222;
-    text-align: justify;
     line-height: 30px;
     padding-left: 5px;
     margin: 0;
