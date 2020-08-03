@@ -17,9 +17,9 @@ const {
     setDate,
     setPriority,
     setStage,
-} = require("./public/assets/js/send");
+} = require("./assets/js/send");
 
-process.env.NODE_ENV = "development";
+process.env.NODE_ENV = "production";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -31,7 +31,7 @@ function createMainWindow() {
         width: 1400,
         height: 800,
         backgroundColor: "white",
-        icon: path.join(__dirname, "public", "assets", "icons", "bug.png"),
+        icon: path.join(__dirname, "assets", "icons", "win", "icon.ico"),
         webPreferences: {
             nodeIntegration: true,
         },
