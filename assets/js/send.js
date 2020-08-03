@@ -12,41 +12,17 @@ const options = {
 
 const projectOptions = {
     ...options,
-    scriptPath: path.join(
-        __dirname,
-        "/",
-        "../",
-        "../",
-        "../",
-        "backend",
-        "projects"
-    ),
+    scriptPath: path.join(__dirname, "/", "../", "../", "backend", "projects"),
 };
 
 const groupOptions = {
     ...options,
-    scriptPath: path.join(
-        __dirname,
-        "/",
-        "../",
-        "../",
-        "../",
-        "backend",
-        "groups"
-    ),
+    scriptPath: path.join(__dirname, "/", "../", "../", "backend", "groups"),
 };
 
 const issueOptions = {
     ...options,
-    scriptPath: path.join(
-        __dirname,
-        "/",
-        "../",
-        "../",
-        "../",
-        "backend",
-        "issues"
-    ),
+    scriptPath: path.join(__dirname, "/", "../", "../", "backend", "issues"),
 };
 
 /*
