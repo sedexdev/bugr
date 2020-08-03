@@ -11,7 +11,7 @@ export const Delete = ({ title, extraClasses, revealFunc, onClick }) => {
 
     return (
         <div className={deleteClasses}>
-            <p className='delete-project-msg'>Delete {title}?</p>
+            <p className='delete-project-msg'>Delete project?</p>
             <div className='delete-project-btn-container'>
                 <button className='delete-project-btn'>
                     <i
