@@ -107,6 +107,7 @@ export const SidePanel = ({
                                                     checkStorage();
                                                     updateAppState();
                                                 }}
+                                                type='Project'
                                             />
                                         )}
                                 </div>

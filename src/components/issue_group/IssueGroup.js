@@ -98,6 +98,7 @@ export const IssueGroup = ({
                             });
                             updateAppState();
                         }}
+                        type='Group'
                     />
                 )}
                 {currentEditGroupId === issueGroupId && (

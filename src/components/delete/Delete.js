@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 
 import "./delete.css";
 
-export const Delete = ({ title, extraClasses, revealFunc, onClick }) => {
+export const Delete = ({ extraClasses, revealFunc, onClick, type }) => {
     const deleteClasses = extraClasses
         ? `delete-project-container ${extraClasses}`
         : "delete-project-container";
 
     return (
         <div className={deleteClasses}>
-            <p className='delete-project-msg'>Delete project?</p>
+            <p className='delete-project-msg'>Delete {type}?</p>
             <div className='delete-project-btn-container'>
                 <button className='delete-project-btn'>
                     <i
@@ -32,10 +32,10 @@ export const Delete = ({ title, extraClasses, revealFunc, onClick }) => {
 };
 
 Delete.propTypes = {
-    title: PropTypes.string,
     extraClasses: PropTypes.string,
     revealFunc: PropTypes.func,
     onClick: PropTypes.func,
+    type: PropTypes.string,
 };
 
 export default Delete;
