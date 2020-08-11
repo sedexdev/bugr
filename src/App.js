@@ -66,14 +66,20 @@ const App = () => {
         }, 500);
     }, []);
 
-    const sortStats = (stats) => {
-        const sorted = Object.keys(stats)
-            .sort()
-            .reduce((acc, key) => {
-                acc[key] = stats[key];
-                return acc;
-            }, {});
-        return sorted;
+    const sortStats = (stats, context) => {
+        return context === "priority"
+            ? {
+                  Low: stats.Low || 0,
+                  Medium: stats.Medium || 0,
+                  High: stats.High || 0,
+                  Urgent: stats.Urgent || 0,
+              }
+            : {
+                  Todo: stats.Todo || 0,
+                  Progressing: stats.Progressing || 0,
+                  Complete: stats.Complete || 0,
+                  Stuck: stats.Stuck || 0,
+              };
     };
 
     const createStatusObjects = (data, fromStorage) => {
@@ -93,15 +99,17 @@ const App = () => {
             }
         }
         return {
-            priority: sortStats(priorityStats),
-            stage: sortStats(stageStats),
+            priority: sortStats(priorityStats, "priority"),
+            stage: sortStats(stageStats, "stage"),
         };
     };
 
     const calculateTotalStats = (stats) => {
         let total = 0;
         for (let key in stats) {
-            total += stats[key];
+            if (key) {
+                total += stats[key];
+            }
         }
         return total;
     };
@@ -109,10 +117,12 @@ const App = () => {
     const calculatePercentages = (stats, total) => {
         const percentages = [];
         for (let key in stats) {
-            const percentage = parseFloat((stats[key] / total) * 100).toFixed(
-                2
-            );
-            percentages.push([key, `${percentage}%`]);
+            if (key) {
+                const percentage = parseFloat(
+                    (stats[key] / total) * 100
+                ).toFixed(2);
+                percentages.push([key, `${percentage}%`]);
+            }
         }
         return percentages;
     };
