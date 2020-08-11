@@ -66,7 +66,7 @@ const App = () => {
         }, 500);
     }, []);
 
-    const sortStats = (stats, context) => {
+    const sortStats = useCallback((stats, context) => {
         return context === "priority"
             ? {
                   Low: stats.Low || 0,
@@ -80,29 +80,32 @@ const App = () => {
                   Complete: stats.Complete || 0,
                   Stuck: stats.Stuck || 0,
               };
-    };
+    }, []);
 
-    const createStatusObjects = (data, fromStorage) => {
-        const priorityStats = {};
-        const stageStats = {};
-        const parsedData = fromStorage
-            ? JSON.parse(data)
-            : JSON.parse(JSON.parse(data));
-        for (let group of parsedData.groups) {
-            for (let issue of group.issues) {
-                !priorityStats[issue.priority]
-                    ? (priorityStats[issue.priority] = 1)
-                    : priorityStats[issue.priority]++;
-                !stageStats[issue.stage]
-                    ? (stageStats[issue.stage] = 1)
-                    : stageStats[issue.stage]++;
+    const createStatusObjects = useCallback(
+        (data, fromStorage) => {
+            const priorityStats = {};
+            const stageStats = {};
+            const parsedData = fromStorage
+                ? JSON.parse(data)
+                : JSON.parse(JSON.parse(data));
+            for (let group of parsedData.groups) {
+                for (let issue of group.issues) {
+                    !priorityStats[issue.priority]
+                        ? (priorityStats[issue.priority] = 1)
+                        : priorityStats[issue.priority]++;
+                    !stageStats[issue.stage]
+                        ? (stageStats[issue.stage] = 1)
+                        : stageStats[issue.stage]++;
+                }
             }
-        }
-        return {
-            priority: sortStats(priorityStats, "priority"),
-            stage: sortStats(stageStats, "stage"),
-        };
-    };
+            return {
+                priority: sortStats(priorityStats, "priority"),
+                stage: sortStats(stageStats, "stage"),
+            };
+        },
+        [sortStats]
+    );
 
     const calculateTotalStats = (stats) => {
         let total = 0;
@@ -197,7 +200,7 @@ const App = () => {
         if (Object.keys(localStorage)) {
             setProjectNames(Object.keys(localStorage));
         }
-    }, [updateAppState, countStatusRef]);
+    }, [updateAppState, countStatusRef, createStatusObjects]);
 
     /* -------------------- Project Level Functions -------------------- */
 
